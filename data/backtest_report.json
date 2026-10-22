@@ -1,0 +1,104 @@
+{
+  "insider_cluster": {
+    "by_horizon": [],
+    "best_horizon": null
+  },
+  "insider_buy": {
+    "by_horizon": [],
+    "best_horizon": null
+  },
+  "breakout": {
+    "by_horizon": [
+      {
+        "horizon": 5,
+        "n": 424,
+        "avg_return": 0.0073,
+        "win_rate": 0.557,
+        "edge_vs_baseline": 0.0024
+      },
+      {
+        "horizon": 10,
+        "n": 422,
+        "avg_return": 0.0138,
+        "win_rate": 0.557,
+        "edge_vs_baseline": 0.0039
+      },
+      {
+        "horizon": 15,
+        "n": 422,
+        "avg_return": 0.0185,
+        "win_rate": 0.566,
+        "edge_vs_baseline": 0.0037
+      },
+      {
+        "horizon": 20,
+        "n": 422,
+        "avg_return": 0.0241,
+        "win_rate": 0.557,
+        "edge_vs_baseline": 0.004
+      },
+      {
+        "horizon": 40,
+        "n": 407,
+        "avg_return": 0.0275,
+        "win_rate": 0.521,
+        "edge_vs_baseline": -0.0146
+      },
+      {
+        "horizon": 60,
+        "n": 392,
+        "avg_return": 0.0487,
+        "win_rate": 0.561,
+        "edge_vs_baseline": -0.0159
+      }
+    ],
+    "best_horizon": 10
+  },
+  "pullback": {
+    "by_horizon": [
+      {
+        "horizon": 5,
+        "n": 429,
+        "avg_return": 0.0066,
+        "win_rate": 0.562,
+        "edge_vs_baseline": 0.0017
+      },
+      {
+        "horizon": 10,
+        "n": 420,
+        "avg_return": 0.0142,
+        "win_rate": 0.581,
+        "edge_vs_baseline": 0.0044
+      },
+      {
+        "horizon": 15,
+        "n": 409,
+        "avg_return": 0.0214,
+        "win_rate": 0.572,
+        "edge_vs_baseline": 0.0066
+      },
+      {
+        "horizon": 20,
+        "n": 395,
+        "avg_return": 0.0206,
+        "win_rate": 0.549,
+        "edge_vs_baseline": 0.0006
+      },
+      {
+        "horizon": 40,
+        "n": 349,
+        "avg_return": 0.0471,
+        "win_rate": 0.579,
+        "edge_vs_baseline": 0.005
+      },
+      {
+        "horizon": 60,
+        "n": 327,
+        "avg_return": 0.0739,
+        "win_rate": 0.627,
+        "edge_vs_baseline": 0.0094
+      }
+    ],
+    "best_horizon": 15
+  }
+}

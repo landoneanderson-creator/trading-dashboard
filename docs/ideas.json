@@ -1,0 +1,18 @@
+[
+  {
+    "ticker":"INTC",
+    "grade":"B",
+    "score":20,
+    "setup":"pullback",
+    "as_of":"2026-10-21",
+    "entry":92.96,
+    "stop":84.54,
+    "target":109.79,
+    "hold_days":15,
+    "exit_by":"2026-11-11",
+    "rsi":36.4,
+    "reasons":[
+      "Pullback in uptrend, RSI 36"
+    ]
+  }
+]

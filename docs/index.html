@@ -1,4 +1,52 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Trade Signal Dashboard</title></head><body style="font-family:sans-serif;max-width:640px;margin:40px auto;padding:0 16px">
-<h1>Trade Signal Dashboard</h1><p>The first daily refresh hasn't run yet. See the README for setup.</p>
-<p><b>Not financial advice.</b></p></body></html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Trade Signal Dashboard</title><style>
+:root{--bg:#f7f7f5;--card:#fff;--text:#1d1d1b;--muted:#6b6b66;--line:#e4e4df;--accent:#2f6fde;
+--a:#1f8a4c;--b:#8a6d1f;--stop:#c0392b;--warn-bg:#fff6e0;--warn-line:#e8c66a}
+@media (prefers-color-scheme:dark){:root{--bg:#141413;--card:#1e1e1c;--text:#ecebe6;--muted:#a3a29b;
+--line:#33332f;--accent:#7aa7ff;--a:#5fd08f;--b:#e0c063;--stop:#ff7b6b;--warn-bg:#2a2414;--warn-line:#6b5a25}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);
+font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+main{max-width:1100px;margin:0 auto;padding:24px 16px 48px}h1{font-size:24px;margin:0 0 4px}
+.muted{color:var(--muted)}.warn{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:8px;
+padding:10px 14px;margin:16px 0;font-size:13px}
+.cards{display:grid;gap:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.top{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px}.tk{font-size:20px;font-weight:700}
+.grade{font-weight:700;border-radius:6px;padding:1px 8px;font-size:13px;border:1px solid currentColor}
+.gA{color:var(--a)}.gB{color:var(--b)}.plan{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));
+gap:8px;margin:10px 0}.plan div{font-size:13px}.plan b{display:block;font-size:16px;font-variant-numeric:tabular-nums}
+.stop b{color:var(--stop)}ul{margin:6px 0 0;padding-left:18px}a{color:var(--accent)}
+.news{font-size:13px;margin-top:8px}table{border-collapse:collapse;width:100%;font-size:13px;margin-top:8px}
+th,td{text-align:left;padding:4px 8px;border-bottom:1px solid var(--line)}
+.scroll{overflow-x:auto}
+</style></head>
+<body><main>
+<h1>Trade Signal Dashboard</h1>
+<div class="muted">Updated 2026-10-22 05:06 UTC after the market close. Ranked by grade, then score.</div>
+<div class="warn"><b>Not financial advice.</b> This dashboard is an automated research tool, not financial advice. Signals come from public data and simple rules that can and do fail. Past performance does not predict future results. Do your own research, size positions so a stop-out is affordable, and make your own decisions.</div>
+<p class="muted">Grade A: insider buying confirmed by the chart. Grade B: one signal only.
+Stops and targets are multiples of the stock's average daily range (ATR).</p>
+<div class="cards">
+<div class="card">
+  <div class="top">
+    <span class="tk">INTC</span>
+    <span class="grade gB">Grade B</span>
+    <span>Pullback in uptrend</span>
+    <span class="muted">score 20</span>
+    <a href="https://www.tradingview.com/chart/?symbol=INTC" target="_blank" rel="noopener">Open in TradingView</a>
+  </div>
+  <div class="plan">
+    <div>Entry (last close)<b>$92.96</b></div>
+    <div class="stop">Stop<b>$84.54</b></div>
+    <div>Target<b>$109.79</b></div>
+    <div>Hold<b>15 trading days</b></div>
+    <div>Exit by<b>2026-11-11</b></div>
+    <div>Reward / risk<b>2.0 : 1</b></div>
+  </div>
+  <ul><li>Pullback in uptrend, RSI 36</li></ul><div class="news"><span class="muted">Recent headlines</span><ul><li><a href="https://finance.yahoo.com/technology/ai/articles/does-intel-intc-joining-terafab-012248605.html?.tsrc=rss" rel="noopener" target="_blank">What Does Intel (INTC) Joining The Terafab AI Chip Project Mean?</a></li><li><a href="https://finance.yahoo.com/m/447280e1-16c0-3b2b-9960-de4e1125cffc/spacex%2C-tesla%2C-meta%2C-nvidia%2C.html?.tsrc=rss" rel="noopener" target="_blank">SpaceX, Tesla, Meta, Nvidia, Intel, Netflix, AT&amp;T, and More Stocks That Explain Today’s Market</a></li><li><a href="https://stocktwits.com/news-articles/markets/equity/intel-s-28-b-ohio-chip-project-hits-construction-milestone-after-years-of-delays-arizona-fab-targets-2028-start/cZxMJJkRBvr?.tsrc=rss" rel="noopener" target="_blank">Intel’s $28B Ohio Chip Project Hits Construction Milestone After Years Of Delays — Arizona Fab Targets 2028 Start</a></li></ul></div>
+</div></div>
+<h2>How the hold periods were chosen</h2>
+<div class='scroll'><table><tr><th>Setup</th><th>Best hold</th><th>Signals</th><th>Avg return</th><th>Win rate</th><th>Edge vs. any day</th></tr><tr><td>Insider cluster buy</td><td colspan=5 class='muted'>not enough history yet</td></tr><tr><td>Insider buy</td><td colspan=5 class='muted'>not enough history yet</td></tr><tr><td>Breakout</td><td>10 days</td><td>422</td><td>1.4%</td><td>56%</td><td>+0.4%</td></tr><tr><td>Pullback in uptrend</td><td>15 days</td><td>409</td><td>2.1%</td><td>57%</td><td>+0.7%</td></tr></table></div>
+<p class="muted" style="margin-top:24px">Data: SEC EDGAR Form 4 filings, Yahoo Finance / Stooq daily prices,
+Yahoo Finance headlines. Charts: TradingView.</p>
+</main></body></html>
