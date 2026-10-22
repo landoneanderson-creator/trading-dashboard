@@ -22,7 +22,9 @@ def daily(skip_insider: bool = False) -> None:
         try:
             trades = edgar.update_cache(today)
         except Exception as exc:  # keep the dashboard building on cached insider data
-            print(f"::warning::SEC EDGAR update failed, using cached insider data: {exc}")
+            ua = config.SEC_USER_AGENT
+            print(f"::warning::SEC EDGAR update failed, using cached insider data: {exc} "
+                  f"(User-Agent has an email: {'@' in ua}, words: {len(ua.split())})")
     summary = edgar.summarize(trades, today)
     tickers = list(dict.fromkeys(load_universe() + summary["ticker"].tolist()))
     print(f"[daily] fetching prices for {len(tickers)} tickers ({len(summary)} with insider buying)")
