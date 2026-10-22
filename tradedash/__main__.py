@@ -17,7 +17,12 @@ def load_universe() -> list[str]:
 
 def daily(skip_insider: bool = False) -> None:
     today = dt.date.today()
-    trades = edgar.load_trades() if skip_insider else edgar.update_cache(today)
+    trades = edgar.load_trades()
+    if not skip_insider:
+        try:
+            trades = edgar.update_cache(today)
+        except Exception as exc:  # keep the dashboard building on cached insider data
+            print(f"::warning::SEC EDGAR update failed, using cached insider data: {exc}")
     summary = edgar.summarize(trades, today)
     tickers = list(dict.fromkeys(load_universe() + summary["ticker"].tolist()))
     print(f"[daily] fetching prices for {len(tickers)} tickers ({len(summary)} with insider buying)")

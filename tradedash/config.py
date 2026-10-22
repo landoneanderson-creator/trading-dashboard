@@ -9,7 +9,7 @@ UNIVERSE_FILE = ROOT / "universe.txt"
 
 # The SEC requires a descriptive User-Agent with contact info on every request.
 # Set SEC_USER_AGENT (e.g. "trading-dashboard you@example.com") as a GitHub Actions secret.
-SEC_USER_AGENT = os.environ.get("SEC_USER_AGENT", "trading-dashboard (set SEC_USER_AGENT env var)")
+SEC_USER_AGENT = os.environ.get("SEC_USER_AGENT") or "trading-dashboard (set SEC_USER_AGENT env var)"
 SEC_MAX_REQUESTS_PER_SEC = 8  # SEC fair-access limit is 10/s
 
 # Days of Form 4 filings to backfill when the cache is empty.
