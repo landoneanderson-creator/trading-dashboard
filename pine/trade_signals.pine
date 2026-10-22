@@ -1,0 +1,43 @@
+//@version=6
+// Same chart rules as the dashboard: uptrend, pullback in uptrend, volume breakout, ATR stop/target.
+// Insider buying can't be computed in Pine, so check the dashboard for that part.
+// Not financial advice.
+indicator("Trade Signal Dashboard: chart signals", overlay = true)
+
+rsiLen      = input.int(14, "RSI length")
+pullbackRsi = input.int(40, "Pullback RSI below")
+breakoutLen = input.int(20, "Breakout lookback")
+volRatioMin = input.float(1.5, "Breakout volume x average")
+atrLen      = input.int(14, "ATR length")
+stopAtr     = input.float(2.0, "Stop (ATR multiple)")
+targetAtr   = input.float(4.0, "Target (ATR multiple)")
+
+sma20  = ta.sma(close, 20)
+sma50  = ta.sma(close, 50)
+sma200 = ta.sma(close, 200)
+longMa = na(sma200) ? sma50 : sma200
+r      = ta.rsi(close, rsiLen)
+a      = ta.atr(atrLen)
+volAvg = ta.sma(volume, 50)
+priorHigh = ta.highest(high, breakoutLen)[1]
+
+uptrend  = close > sma50 and sma50 > longMa
+pullback = sma50 > longMa and close > longMa and r < pullbackRsi
+breakout = close > priorHigh and volume >= volRatioMin * volAvg and close > sma50
+
+plot(sma50, "SMA 50", color = color.new(color.blue, 0))
+plot(sma200, "SMA 200", color = color.new(color.orange, 0))
+bgcolor(uptrend ? color.new(color.green, 92) : na, title = "Uptrend")
+plotshape(breakout, "Breakout", shape.triangleup, location.belowbar, color.green, size = size.small, text = "BO")
+plotshape(pullback and not breakout, "Pullback", shape.circle, location.belowbar, color.teal, size = size.tiny, text = "PB")
+
+var line stopLine = na
+var line targetLine = na
+if barstate.islast
+    line.delete(stopLine)
+    line.delete(targetLine)
+    stopLine := line.new(bar_index - 5, close - stopAtr * a, bar_index + 10, close - stopAtr * a, color = color.red, style = line.style_dashed)
+    targetLine := line.new(bar_index - 5, close + targetAtr * a, bar_index + 10, close + targetAtr * a, color = color.green, style = line.style_dashed)
+
+alertcondition(breakout, "Breakout", "{{ticker}} breakout to a new high on heavy volume")
+alertcondition(pullback, "Pullback in uptrend", "{{ticker}} pullback in uptrend (RSI below threshold)")
