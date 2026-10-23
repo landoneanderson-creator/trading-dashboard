@@ -1,22 +1,5 @@
 [
   {
-    "ticker":"CRBG",
-    "grade":"A",
-    "score":45,
-    "setup":"insider_buy",
-    "as_of":"2026-10-21",
-    "entry":35.3,
-    "stop":33.09,
-    "target":38.84,
-    "hold_days":40,
-    "exit_by":"2026-12-16",
-    "rsi":60.8,
-    "reasons":[
-      "Insider bought $89,380,140 (NIPPON LIFE INSURANCE CO)",
-      "Uptrend: price above rising 50\/200-day averages"
-    ]
-  },
-  {
     "ticker":"CXM",
     "grade":"A",
     "score":43,
@@ -31,40 +14,6 @@
     "reasons":[
       "Insider bought $850,500 (WARD JR STEPHEN M)",
       "Uptrend: price above rising 50\/200-day averages"
-    ]
-  },
-  {
-    "ticker":"XGN",
-    "grade":"A",
-    "score":33,
-    "setup":"insider_buy",
-    "as_of":"2026-10-21",
-    "entry":7.88,
-    "stop":6.57,
-    "target":9.98,
-    "hold_days":40,
-    "exit_by":"2026-12-16",
-    "rsi":48.6,
-    "reasons":[
-      "Insider bought $104,440 (Chernett Jorey)",
-      "Uptrend: price above rising 50\/200-day averages"
-    ]
-  },
-  {
-    "ticker":"BPRE",
-    "grade":"B",
-    "score":50,
-    "setup":"insider_cluster",
-    "as_of":"2026-10-22",
-    "entry":12.37,
-    "stop":11.67,
-    "target":13.77,
-    "hold_days":60,
-    "exit_by":"2027-01-14",
-    "rsi":50.8,
-    "reasons":[
-      "2 insiders bought $11,289,633 in the last 30 days",
-      "CEO\/CFO\/President among the buyers"
     ]
   },
   {
@@ -169,22 +118,6 @@
     ]
   },
   {
-    "ticker":"LEO",
-    "grade":"B",
-    "score":29,
-    "setup":"insider_buy",
-    "as_of":"2026-10-22",
-    "entry":5.7,
-    "stop":5.49,
-    "target":6.03,
-    "hold_days":40,
-    "exit_by":"2026-12-17",
-    "rsi":53.4,
-    "reasons":[
-      "Insider bought $1,955,819 (Saba Capital Management, L.P.)"
-    ]
-  },
-  {
     "ticker":"RAPP",
     "grade":"B",
     "score":29,
@@ -199,22 +132,6 @@
     "reasons":[
       "Insider bought $143,550 (Ignelzi Troy A.)",
       "CEO\/CFO\/President among the buyers"
-    ]
-  },
-  {
-    "ticker":"DSM",
-    "grade":"B",
-    "score":28,
-    "setup":"insider_buy",
-    "as_of":"2026-10-22",
-    "entry":5.33,
-    "stop":5.14,
-    "target":5.64,
-    "hold_days":40,
-    "exit_by":"2026-12-17",
-    "rsi":54.2,
-    "reasons":[
-      "Insider bought $1,246,142 (Saba Capital Management, L.P.)"
     ]
   },
   {
@@ -234,23 +151,6 @@
     ]
   },
   {
-    "ticker":"CRF",
-    "grade":"B",
-    "score":28,
-    "setup":"insider_buy",
-    "as_of":"2026-10-22",
-    "entry":5.88,
-    "stop":5.61,
-    "target":6.32,
-    "hold_days":40,
-    "exit_by":"2026-12-17",
-    "rsi":39.1,
-    "reasons":[
-      "Insider bought $117,600 (Bradshaw Joshua)",
-      "CEO\/CFO\/President among the buyers"
-    ]
-  },
-  {
     "ticker":"PAM",
     "grade":"B",
     "score":25,
@@ -264,22 +164,6 @@
     "rsi":40.4,
     "reasons":[
       "Insider bought $35,139,300 (Mindlin Marcos Marcelo)"
-    ]
-  },
-  {
-    "ticker":"GOLD",
-    "grade":"B",
-    "score":25,
-    "setup":"insider_buy",
-    "as_of":"2026-10-21",
-    "entry":38.82,
-    "stop":35.13,
-    "target":44.72,
-    "hold_days":40,
-    "exit_by":"2026-12-16",
-    "rsi":38.3,
-    "reasons":[
-      "Insider bought $3,983,019 (Tether Global Investments Fund, S.I.C.A.F., S.A.; TPM, S.A. de C.V.; Devasini Giancarlo)"
     ]
   },
   {
@@ -299,38 +183,6 @@
     ]
   },
   {
-    "ticker":"PRTA",
-    "grade":"B",
-    "score":23,
-    "setup":"insider_buy",
-    "as_of":"2026-10-21",
-    "entry":8.03,
-    "stop":7.01,
-    "target":9.67,
-    "hold_days":40,
-    "exit_by":"2026-12-16",
-    "rsi":40.5,
-    "reasons":[
-      "Insider bought $920,049 (SCULLY WILLIAM P)"
-    ]
-  },
-  {
-    "ticker":"SAH",
-    "grade":"B",
-    "score":22,
-    "setup":"insider_buy",
-    "as_of":"2026-10-21",
-    "entry":60.68,
-    "stop":53.22,
-    "target":72.62,
-    "hold_days":40,
-    "exit_by":"2026-12-16",
-    "rsi":39.4,
-    "reasons":[
-      "Insider bought $752,044 (Rusnak Paul P.)"
-    ]
-  },
-  {
     "ticker":"AVO",
     "grade":"B",
     "score":22,
@@ -344,23 +196,6 @@
     "rsi":34.4,
     "reasons":[
       "Insider bought $594,785 (Gonzalez Luis A)"
-    ]
-  },
-  {
-    "ticker":"CLM",
-    "grade":"B",
-    "score":21,
-    "setup":"insider_buy",
-    "as_of":"2026-10-22",
-    "entry":6.1,
-    "stop":5.83,
-    "target":6.53,
-    "hold_days":40,
-    "exit_by":"2026-12-17",
-    "rsi":36.5,
-    "reasons":[
-      "Insider bought $97,280 (Bradshaw Joshua)",
-      "CEO\/CFO\/President among the buyers"
     ]
   },
   {
@@ -380,35 +215,83 @@
     ]
   },
   {
-    "ticker":"DOLE",
+    "ticker":"FIS",
     "grade":"B",
     "score":15,
     "setup":"insider_buy",
     "as_of":"2026-10-21",
-    "entry":13.11,
-    "stop":12.47,
-    "target":14.14,
+    "entry":36.42,
+    "stop":33.73,
+    "target":40.73,
     "hold_days":40,
     "exit_by":"2026-12-16",
-    "rsi":48.0,
+    "rsi":55.7,
     "reasons":[
-      "Insider bought $75,721 (Pale Fire Capital SE; Pale Fire Capital SICAV a.s.; Pale Fire Capital investicni spolecnost a.s.; Senkypl Dusan; Barta Jan)"
+      "Insider bought $57,694 (Goldstein Jeffrey A)"
     ]
   },
   {
-    "ticker":"NAD",
+    "ticker":"FUL",
     "grade":"B",
-    "score":15,
+    "score":13,
     "setup":"insider_buy",
-    "as_of":"2026-10-22",
-    "entry":10.46,
-    "stop":9.95,
-    "target":11.27,
+    "as_of":"2026-10-21",
+    "entry":50.66,
+    "stop":47.02,
+    "target":56.48,
     "hold_days":40,
-    "exit_by":"2026-12-17",
-    "rsi":53.2,
+    "exit_by":"2026-12-16",
+    "rsi":47.9,
     "reasons":[
-      "Insider bought $71,766 (TOTH TERENCE J)"
+      "Insider bought $25,000 (Malik Muhammad Shahbaz)"
+    ]
+  },
+  {
+    "ticker":"CRESY",
+    "grade":"B",
+    "score":11,
+    "setup":"insider_buy",
+    "as_of":"2026-10-21",
+    "entry":11.16,
+    "stop":10.11,
+    "target":12.84,
+    "hold_days":40,
+    "exit_by":"2026-12-16",
+    "rsi":41.7,
+    "reasons":[
+      "Insider bought $92,738 (Elsztain Alejandro Gustavo)"
+    ]
+  },
+  {
+    "ticker":"NBIS",
+    "grade":"B",
+    "score":10,
+    "setup":"insider_buy",
+    "as_of":"2026-10-21",
+    "entry":171.57,
+    "stop":129.95,
+    "target":238.17,
+    "hold_days":40,
+    "exit_by":"2026-12-16",
+    "rsi":33.7,
+    "reasons":[
+      "Insider bought $75,476 (Grimme Arne)"
+    ]
+  },
+  {
+    "ticker":"YORW",
+    "grade":"B",
+    "score":9,
+    "setup":"insider_buy",
+    "as_of":"2026-10-21",
+    "entry":30.56,
+    "stop":28.81,
+    "target":33.36,
+    "hold_days":40,
+    "exit_by":"2026-12-16",
+    "rsi":40.3,
+    "reasons":[
+      "Insider bought $40,000 (Velazquez David M)"
     ]
   }
 ]
