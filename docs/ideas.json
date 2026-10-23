@@ -1,16 +1,33 @@
 [
   {
+    "ticker":"IIPR",
+    "grade":"A",
+    "score":43,
+    "setup":"insider_buy",
+    "as_of":"2026-10-23",
+    "entry":54.21,
+    "stop":50.99,
+    "target":59.36,
+    "hold_days":40,
+    "exit_by":"2026-12-18",
+    "rsi":57.5,
+    "reasons":[
+      "Insider bought $1,000,000 (Gold Alan D)",
+      "Uptrend: price above rising 50\/200-day averages"
+    ]
+  },
+  {
     "ticker":"CXM",
     "grade":"A",
     "score":43,
     "setup":"insider_buy",
-    "as_of":"2026-10-21",
-    "entry":6.42,
-    "stop":5.78,
-    "target":7.44,
+    "as_of":"2026-10-23",
+    "entry":6.69,
+    "stop":6.06,
+    "target":7.69,
     "hold_days":40,
-    "exit_by":"2026-12-16",
-    "rsi":68.5,
+    "exit_by":"2026-12-18",
+    "rsi":72.6,
     "reasons":[
       "Insider bought $850,500 (WARD JR STEPHEN M)",
       "Uptrend: price above rising 50\/200-day averages"
@@ -21,15 +38,32 @@
     "grade":"B",
     "score":50,
     "setup":"insider_cluster",
-    "as_of":"2026-10-21",
-    "entry":20.98,
-    "stop":16.45,
-    "target":30.05,
+    "as_of":"2026-10-23",
+    "entry":18.25,
+    "stop":13.72,
+    "target":27.3,
     "hold_days":60,
-    "exit_by":"2027-01-13",
-    "rsi":40.9,
+    "exit_by":"2027-01-15",
+    "rsi":33.5,
     "reasons":[
       "2 insiders bought $6,664,686 in the last 30 days",
+      "CEO\/CFO\/President among the buyers"
+    ]
+  },
+  {
+    "ticker":"RAPP",
+    "grade":"B",
+    "score":50,
+    "setup":"insider_cluster",
+    "as_of":"2026-10-23",
+    "entry":25.93,
+    "stop":19.84,
+    "target":38.1,
+    "hold_days":60,
+    "exit_by":"2027-01-15",
+    "rsi":30.5,
+    "reasons":[
+      "5 insiders bought $1,566,347 in the last 30 days",
       "CEO\/CFO\/President among the buyers"
     ]
   },
@@ -38,13 +72,13 @@
     "grade":"B",
     "score":50,
     "setup":"insider_cluster",
-    "as_of":"2026-10-21",
-    "entry":11.05,
-    "stop":10.27,
-    "target":12.61,
+    "as_of":"2026-10-23",
+    "entry":10.92,
+    "stop":10.14,
+    "target":12.48,
     "hold_days":60,
-    "exit_by":"2027-01-13",
-    "rsi":44.8,
+    "exit_by":"2027-01-15",
+    "rsi":46.2,
     "reasons":[
       "2 insiders bought $256,530 in the last 30 days",
       "CEO\/CFO\/President among the buyers"
@@ -53,15 +87,15 @@
   {
     "ticker":"GME",
     "grade":"B",
-    "score":40,
+    "score":35,
     "setup":"insider_buy",
-    "as_of":"2026-10-21",
-    "entry":26.29,
-    "stop":23.58,
-    "target":30.63,
+    "as_of":"2026-10-23",
+    "entry":24.82,
+    "stop":22.04,
+    "target":29.27,
     "hold_days":40,
-    "exit_by":"2026-12-16",
-    "rsi":61.0,
+    "exit_by":"2026-12-18",
+    "rsi":49.5,
     "reasons":[
       "Insider bought $22,774,728 (Cohen Ryan)",
       "CEO\/CFO\/President among the buyers"
@@ -70,15 +104,15 @@
   {
     "ticker":"INBX",
     "grade":"B",
-    "score":38,
+    "score":33,
     "setup":"insider_buy",
-    "as_of":"2026-10-21",
-    "entry":98.19,
-    "stop":83.47,
-    "target":121.75,
+    "as_of":"2026-10-23",
+    "entry":93.38,
+    "stop":78.88,
+    "target":116.57,
     "hold_days":40,
-    "exit_by":"2026-12-16",
-    "rsi":51.9,
+    "exit_by":"2026-12-18",
+    "rsi":45.2,
     "reasons":[
       "Insider bought $831,825 (Lappe Mark)",
       "CEO\/CFO\/President among the buyers"
@@ -89,13 +123,13 @@
     "grade":"B",
     "score":31,
     "setup":"insider_buy",
-    "as_of":"2026-10-21",
-    "entry":13.69,
-    "stop":12.35,
-    "target":15.84,
+    "as_of":"2026-10-23",
+    "entry":13.57,
+    "stop":12.24,
+    "target":15.69,
     "hold_days":40,
-    "exit_by":"2026-12-16",
-    "rsi":21.2,
+    "exit_by":"2026-12-18",
+    "rsi":22.8,
     "reasons":[
       "Insider bought $445,800 (Oberbeck Christian L)",
       "CEO\/CFO\/President among the buyers"
@@ -106,62 +140,29 @@
     "grade":"B",
     "score":30,
     "setup":"insider_buy",
-    "as_of":"2026-10-21",
-    "entry":134.7,
-    "stop":128.02,
-    "target":145.38,
+    "as_of":"2026-10-23",
+    "entry":135.77,
+    "stop":128.56,
+    "target":147.31,
     "hold_days":40,
-    "exit_by":"2026-12-16",
-    "rsi":61.7,
+    "exit_by":"2026-12-18",
+    "rsi":59.9,
     "reasons":[
       "Insider bought $17,904,168 (POHLAD ROBERT C)"
     ]
   },
   {
-    "ticker":"RAPP",
-    "grade":"B",
-    "score":29,
-    "setup":"insider_buy",
-    "as_of":"2026-10-21",
-    "entry":25.06,
-    "stop":18.97,
-    "target":34.8,
-    "hold_days":40,
-    "exit_by":"2026-12-16",
-    "rsi":25.3,
-    "reasons":[
-      "Insider bought $143,550 (Ignelzi Troy A.)",
-      "CEO\/CFO\/President among the buyers"
-    ]
-  },
-  {
-    "ticker":"IIPR",
-    "grade":"B",
-    "score":28,
-    "setup":"insider_buy",
-    "as_of":"2026-10-21",
-    "entry":52.58,
-    "stop":49.47,
-    "target":57.55,
-    "hold_days":40,
-    "exit_by":"2026-12-16",
-    "rsi":49.8,
-    "reasons":[
-      "Insider bought $1,000,000 (Gold Alan D)"
-    ]
-  },
-  {
     "ticker":"PAM",
     "grade":"B",
-    "score":25,
+    "score":30,
     "setup":"insider_buy",
-    "as_of":"2026-10-21",
-    "entry":77.92,
-    "stop":72.35,
-    "target":86.84,
+    "as_of":"2026-10-23",
+    "entry":79.5,
+    "stop":73.84,
+    "target":88.55,
     "hold_days":40,
-    "exit_by":"2026-12-16",
-    "rsi":40.4,
+    "exit_by":"2026-12-18",
+    "rsi":47.5,
     "reasons":[
       "Insider bought $35,139,300 (Mindlin Marcos Marcelo)"
     ]
@@ -169,15 +170,15 @@
   {
     "ticker":"FBK",
     "grade":"B",
-    "score":24,
+    "score":29,
     "setup":"insider_buy",
-    "as_of":"2026-10-21",
-    "entry":52.1,
-    "stop":49.25,
-    "target":56.66,
+    "as_of":"2026-10-23",
+    "entry":53.46,
+    "stop":50.52,
+    "target":58.16,
     "hold_days":40,
-    "exit_by":"2026-12-16",
-    "rsi":44.3,
+    "exit_by":"2026-12-18",
+    "rsi":53.4,
     "reasons":[
       "Insider bought $1,537,788 (INGRAM ORRIN H II)"
     ]
@@ -187,15 +188,63 @@
     "grade":"B",
     "score":22,
     "setup":"insider_buy",
-    "as_of":"2026-10-21",
-    "entry":11.55,
-    "stop":10.36,
-    "target":13.45,
+    "as_of":"2026-10-23",
+    "entry":11.69,
+    "stop":10.56,
+    "target":13.5,
     "hold_days":40,
-    "exit_by":"2026-12-16",
-    "rsi":34.4,
+    "exit_by":"2026-12-18",
+    "rsi":38.9,
     "reasons":[
       "Insider bought $594,785 (Gonzalez Luis A)"
+    ]
+  },
+  {
+    "ticker":"NVDA",
+    "grade":"B",
+    "score":20,
+    "setup":"pullback",
+    "as_of":"2026-10-23",
+    "entry":210.96,
+    "stop":201.87,
+    "target":229.14,
+    "hold_days":15,
+    "exit_by":"2026-11-13",
+    "rsi":38.1,
+    "reasons":[
+      "Pullback in uptrend, RSI 38"
+    ]
+  },
+  {
+    "ticker":"META",
+    "grade":"B",
+    "score":20,
+    "setup":"pullback",
+    "as_of":"2026-10-23",
+    "entry":642.62,
+    "stop":603.5,
+    "target":720.86,
+    "hold_days":15,
+    "exit_by":"2026-11-13",
+    "rsi":35.8,
+    "reasons":[
+      "Pullback in uptrend, RSI 36"
+    ]
+  },
+  {
+    "ticker":"AMD",
+    "grade":"B",
+    "score":20,
+    "setup":"pullback",
+    "as_of":"2026-10-23",
+    "entry":516.79,
+    "stop":475.75,
+    "target":598.87,
+    "hold_days":15,
+    "exit_by":"2026-11-13",
+    "rsi":39.0,
+    "reasons":[
+      "Pullback in uptrend, RSI 39"
     ]
   },
   {
@@ -203,15 +252,63 @@
     "grade":"B",
     "score":20,
     "setup":"pullback",
-    "as_of":"2026-10-21",
-    "entry":92.96,
-    "stop":84.54,
-    "target":109.79,
+    "as_of":"2026-10-23",
+    "entry":86.96,
+    "stop":78.54,
+    "target":103.8,
     "hold_days":15,
-    "exit_by":"2026-11-11",
-    "rsi":36.4,
+    "exit_by":"2026-11-13",
+    "rsi":32.8,
     "reasons":[
-      "Pullback in uptrend, RSI 36"
+      "Pullback in uptrend, RSI 33"
+    ]
+  },
+  {
+    "ticker":"MU",
+    "grade":"B",
+    "score":20,
+    "setup":"pullback",
+    "as_of":"2026-10-23",
+    "entry":877.55,
+    "stop":805.8,
+    "target":1021.06,
+    "hold_days":15,
+    "exit_by":"2026-11-13",
+    "rsi":38.2,
+    "reasons":[
+      "Pullback in uptrend, RSI 38"
+    ]
+  },
+  {
+    "ticker":"FCX",
+    "grade":"B",
+    "score":20,
+    "setup":"pullback",
+    "as_of":"2026-10-23",
+    "entry":65.18,
+    "stop":61.22,
+    "target":73.11,
+    "hold_days":15,
+    "exit_by":"2026-11-13",
+    "rsi":34.2,
+    "reasons":[
+      "Pullback in uptrend, RSI 34"
+    ]
+  },
+  {
+    "ticker":"QQQ",
+    "grade":"B",
+    "score":20,
+    "setup":"pullback",
+    "as_of":"2026-10-23",
+    "entry":704.4,
+    "stop":687.09,
+    "target":739.02,
+    "hold_days":15,
+    "exit_by":"2026-11-13",
+    "rsi":36.6,
+    "reasons":[
+      "Pullback in uptrend, RSI 37"
     ]
   },
   {
@@ -219,31 +316,31 @@
     "grade":"B",
     "score":15,
     "setup":"insider_buy",
-    "as_of":"2026-10-21",
-    "entry":36.42,
-    "stop":33.73,
-    "target":40.73,
+    "as_of":"2026-10-23",
+    "entry":37.53,
+    "stop":34.68,
+    "target":42.09,
     "hold_days":40,
-    "exit_by":"2026-12-16",
-    "rsi":55.7,
+    "exit_by":"2026-12-18",
+    "rsi":60.1,
     "reasons":[
       "Insider bought $57,694 (Goldstein Jeffrey A)"
     ]
   },
   {
-    "ticker":"FUL",
+    "ticker":"YORW",
     "grade":"B",
-    "score":13,
+    "score":14,
     "setup":"insider_buy",
-    "as_of":"2026-10-21",
-    "entry":50.66,
-    "stop":47.02,
-    "target":56.48,
+    "as_of":"2026-10-23",
+    "entry":31.82,
+    "stop":30.05,
+    "target":34.66,
     "hold_days":40,
-    "exit_by":"2026-12-16",
-    "rsi":47.9,
+    "exit_by":"2026-12-18",
+    "rsi":56.8,
     "reasons":[
-      "Insider bought $25,000 (Malik Muhammad Shahbaz)"
+      "Insider bought $40,000 (Velazquez David M)"
     ]
   },
   {
@@ -251,15 +348,31 @@
     "grade":"B",
     "score":11,
     "setup":"insider_buy",
-    "as_of":"2026-10-21",
-    "entry":11.16,
-    "stop":10.11,
-    "target":12.84,
+    "as_of":"2026-10-23",
+    "entry":11.45,
+    "stop":10.39,
+    "target":13.14,
     "hold_days":40,
-    "exit_by":"2026-12-16",
-    "rsi":41.7,
+    "exit_by":"2026-12-18",
+    "rsi":48.3,
     "reasons":[
       "Insider bought $92,738 (Elsztain Alejandro Gustavo)"
+    ]
+  },
+  {
+    "ticker":"AGMB",
+    "grade":"B",
+    "score":11,
+    "setup":"insider_buy",
+    "as_of":"2026-10-23",
+    "entry":9.05,
+    "stop":7.06,
+    "target":12.23,
+    "hold_days":40,
+    "exit_by":"2026-12-18",
+    "rsi":41.6,
+    "reasons":[
+      "Insider bought $88,800 (Epstein David R)"
     ]
   },
   {
@@ -267,31 +380,31 @@
     "grade":"B",
     "score":10,
     "setup":"insider_buy",
-    "as_of":"2026-10-21",
-    "entry":171.57,
-    "stop":129.95,
-    "target":238.17,
+    "as_of":"2026-10-23",
+    "entry":158.74,
+    "stop":118.95,
+    "target":222.4,
     "hold_days":40,
-    "exit_by":"2026-12-16",
-    "rsi":33.7,
+    "exit_by":"2026-12-18",
+    "rsi":30.2,
     "reasons":[
       "Insider bought $75,476 (Grimme Arne)"
     ]
   },
   {
-    "ticker":"YORW",
+    "ticker":"FUL",
     "grade":"B",
-    "score":9,
+    "score":8,
     "setup":"insider_buy",
-    "as_of":"2026-10-21",
-    "entry":30.56,
-    "stop":28.81,
-    "target":33.36,
+    "as_of":"2026-10-23",
+    "entry":49.61,
+    "stop":45.92,
+    "target":55.51,
     "hold_days":40,
-    "exit_by":"2026-12-16",
-    "rsi":40.3,
+    "exit_by":"2026-12-18",
+    "rsi":41.3,
     "reasons":[
-      "Insider bought $40,000 (Velazquez David M)"
+      "Insider bought $25,000 (Malik Muhammad Shahbaz)"
     ]
   }
 ]
