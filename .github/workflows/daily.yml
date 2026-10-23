@@ -41,5 +41,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data docs
           git diff --cached --quiet || git commit -m "Refresh dashboard $(date -u +%Y-%m-%d)"
-          git pull --rebase --quiet origin main
+          git pull --rebase --quiet -X theirs origin main  # keep this run's generated files on conflict
           git push
