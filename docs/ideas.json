@@ -1,18 +1,66 @@
 [
   {
-    "ticker":"INTC",
+    "ticker":"NVDA",
     "grade":"B",
     "score":20,
     "setup":"pullback",
-    "as_of":"2026-10-21",
-    "entry":92.96,
-    "stop":84.54,
-    "target":109.79,
+    "as_of":"2026-10-22",
+    "entry":212.21,
+    "stop":202.85,
+    "target":230.94,
     "hold_days":15,
-    "exit_by":"2026-11-11",
-    "rsi":36.4,
+    "exit_by":"2026-11-12",
+    "rsi":39.1,
     "reasons":[
-      "Pullback in uptrend, RSI 36"
+      "Pullback in uptrend, RSI 39"
+    ]
+  },
+  {
+    "ticker":"META",
+    "grade":"B",
+    "score":20,
+    "setup":"pullback",
+    "as_of":"2026-10-22",
+    "entry":648.85,
+    "stop":608.52,
+    "target":729.51,
+    "hold_days":15,
+    "exit_by":"2026-11-12",
+    "rsi":36.9,
+    "reasons":[
+      "Pullback in uptrend, RSI 37"
+    ]
+  },
+  {
+    "ticker":"AMD",
+    "grade":"B",
+    "score":20,
+    "setup":"pullback",
+    "as_of":"2026-10-22",
+    "entry":507.93,
+    "stop":465.58,
+    "target":592.63,
+    "hold_days":15,
+    "exit_by":"2026-11-12",
+    "rsi":36.5,
+    "reasons":[
+      "Pullback in uptrend, RSI 37"
+    ]
+  },
+  {
+    "ticker":"MU",
+    "grade":"B",
+    "score":20,
+    "setup":"pullback",
+    "as_of":"2026-10-22",
+    "entry":856.49,
+    "stop":783.3,
+    "target":1002.87,
+    "hold_days":15,
+    "exit_by":"2026-11-12",
+    "rsi":34.7,
+    "reasons":[
+      "Pullback in uptrend, RSI 35"
     ]
   }
 ]
