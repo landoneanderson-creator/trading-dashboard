@@ -152,7 +152,8 @@ def summarize(trades: pd.DataFrame, as_of: dt.date,
         return pd.DataFrame(columns=cols)
     df = trades[(trades["tx_type"] == "P") & (trades["asset_type"] == "ST")
                 & trades["ticker"].fillna("").str.fullmatch(r"[A-Z]{1,5}(\.[A-Z])?")
-                & (trades["ticker"] != "NONE")].copy()
+                & (trades["ticker"] != "NONE")
+                & (pd.to_numeric(trades["amount_low"], errors="coerce") >= config.CONGRESS_MIN_AMOUNT)].copy()
     df["filed"] = pd.to_datetime(df["filed"], errors="coerce")
     df = df[df["filed"] >= pd.Timestamp(as_of - dt.timedelta(days=lookback_days))]
     if df.empty:

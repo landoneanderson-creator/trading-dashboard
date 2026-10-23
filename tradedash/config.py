@@ -19,6 +19,7 @@ INSIDER_MIN_TRADE_VALUE = 25_000  # ignore tiny open-market buys
 
 # House members' stock purchases, by the date they were disclosed (trades can be up to 45 days older).
 CONGRESS_LOOKBACK_DAYS = 45
+CONGRESS_MIN_AMOUNT = 15_001  # ignore the smallest reporting bracket ($1,001-$15,000)
 
 # Technical settings
 ATR_PERIOD = 14
