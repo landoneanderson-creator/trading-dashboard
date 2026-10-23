@@ -69,3 +69,41 @@ def test_render_escapes_and_includes_disclaimer(breakout):
     assert "Not financial advice" in page
     assert "<script>x" not in page and "&lt;script&gt;" in page
     assert "tradingview.com/chart/?symbol=XYZ" in page
+
+
+def _downtrend_market(n=300):
+    return make_prices(np.linspace(200, 100, n))
+
+
+def test_market_downtrend_pauses_chart_setups(breakout):
+    prices = {"XYZ": breakout, "SPY": _downtrend_market()}
+    assert signals.market_state(prices)["risk_on"] is False
+    assert "XYZ" not in signals.build_ideas(prices, pd.DataFrame()).get("ticker", pd.Series()).tolist()
+
+
+def test_market_downtrend_keeps_insider_ideas_with_warning(uptrend):
+    ideas = signals.build_ideas({"ACME": uptrend, "SPY": _downtrend_market()}, insider_summary("ACME"))
+    i = ideas[ideas["ticker"] == "ACME"].iloc[0]
+    assert i["setup"] == "insider_cluster"
+    assert any("200-day" in r for r in i["reasons"])
+
+
+def test_market_uptrend_allows_breakouts(breakout, uptrend):
+    prices = {"XYZ": breakout, "SPY": uptrend}
+    assert signals.market_state(prices)["risk_on"] is True
+    assert "XYZ" in signals.build_ideas(prices, pd.DataFrame())["ticker"].tolist()
+
+
+def test_opportunistic_insider_scores_higher(uptrend):
+    plain = signals.build_ideas({"ACME": uptrend}, insider_summary("ACME")).iloc[0]
+    opp = insider_summary("ACME").assign(opportunistic=True)
+    boosted = signals.build_ideas({"ACME": uptrend}, opp).iloc[0]
+    assert boosted["score"] == plain["score"] + 5
+    assert any("opportunistic" in r for r in boosted["reasons"])
+
+
+def test_render_shows_market_banner(breakout):
+    ideas = signals.build_ideas({"XYZ": breakout}, pd.DataFrame())
+    down = {"ticker": "SPY", "risk_on": False, "close": 90.0, "ma": 100.0, "pct_vs_ma": -0.1}
+    page = dashboard.render(ideas, {}, None, dt.datetime(2026, 10, 22), market=down)
+    assert "Market: downtrend" in page and "10.0% below" in page

@@ -123,6 +123,7 @@ def run(prices: dict[str, pd.DataFrame], insider_trades: pd.DataFrame, congress_
     ins_by_day = _daily_summaries(insider_trades, days, config.INSIDER_LOOKBACK_DAYS, edgar.summarize)
     con_by_day = _daily_summaries(congress_trades, days, config.CONGRESS_LOOKBACK_DAYS, congress.summarize)
     chart_days = {t: set(df.index[df["breakout"] | df["pullback"]]) for t, df in ind.items()}
+    risk_on = indicators.risk_on(prices[benchmark])
 
     cash, positions, pending, trades = 1.0, {}, [], []
     equity_curve = []
@@ -176,7 +177,8 @@ def run(prices: dict[str, pd.DataFrame], insider_trades: pd.DataFrame, congress_
         for t in names:
             if t not in ind or d not in ind[t].index:
                 continue
-            idea = signals.evaluate(t, d, ind[t].loc[d], ins_today.get(t), con_today.get(t), holds)
+            idea = signals.evaluate(t, d, ind[t].loc[d], ins_today.get(t), con_today.get(t), holds,
+                                    bool(risk_on.get(d, True)))
             if idea and (idea["grade"] == "A" or not grade_a_only):
                 ideas.append(idea)
         pending = [i for i in signals.rank(ideas) if i["ticker"] not in positions]

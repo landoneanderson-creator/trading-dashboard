@@ -111,8 +111,21 @@ def _simulation_table(results: list[dict] | None) -> str:
             "sells at the stop, target or end of the hold, 0.1% costs per trade. Past results don't predict future ones.</p>")
 
 
+def _market_banner(market: dict | None) -> str:
+    if not market:
+        return ""
+    gap = f"{abs(market['pct_vs_ma']):.1%} {'above' if market['risk_on'] else 'below'}"
+    if market["risk_on"]:
+        return (f"<p><b>Market: uptrend.</b> The S&amp;P 500 ({market['ticker']}) is {gap} its "
+                f"{config.REGIME_MA}-day average, so all setups are active.</p>")
+    return (f"<div class='warn'><b>Market: downtrend.</b> The S&amp;P 500 ({market['ticker']}) is {gap} its "
+            f"{config.REGIME_MA}-day average. Breakouts and pullbacks are paused because they fail more often "
+            f"in falling markets. Insider and congressional buys still show; consider smaller positions.</div>")
+
+
 def render(ideas: pd.DataFrame, news: dict[str, list[dict]], report: dict | None,
-           generated: dt.datetime | None = None, simulation: list[dict] | None = None) -> str:
+           generated: dt.datetime | None = None, simulation: list[dict] | None = None,
+           market: dict | None = None) -> str:
     generated = generated or dt.datetime.now(dt.timezone.utc)
     if ideas.empty:
         body = "<p>No setups passed the filters today.</p>"
@@ -126,7 +139,9 @@ def render(ideas: pd.DataFrame, news: dict[str, list[dict]], report: dict | None
 <div class="muted">Updated {generated:%Y-%m-%d %H:%M} UTC after the market close. Ranked by grade, then score.</div>
 <div class="warn"><b>Not financial advice.</b> {DISCLAIMER}</div>
 <p class="muted">Grade A: insider or congressional buying confirmed by the chart. Grade B: one signal only.
-Stops and targets are multiples of the stock's average daily range (ATR).</p>
+Stops and targets are multiples of the stock's average daily range (ATR).
+Insiders who buy in the same month every year are ignored; buys that break an insider's usual pattern score higher.</p>
+{_market_banner(market)}
 <div class="cards">{body}</div>
 <h2>What following the dashboard would have returned</h2>
 {_simulation_table(simulation)}

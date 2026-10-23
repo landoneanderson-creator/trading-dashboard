@@ -49,3 +49,9 @@ def add_all(df: pd.DataFrame) -> pd.DataFrame:
         & (out["close"] > out["sma50"])
     )
     return out
+
+
+def risk_on(market: pd.DataFrame, n: int = config.REGIME_MA) -> pd.Series:
+    """True on days the market index closed above its n-day average (or lacks the history to say)."""
+    ma = sma(market["close"], n)
+    return (market["close"] > ma) | ma.isna()

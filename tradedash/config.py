@@ -21,6 +21,11 @@ INSIDER_MIN_TRADE_VALUE = 25_000  # ignore tiny open-market buys
 CONGRESS_LOOKBACK_DAYS = 45
 CONGRESS_MIN_AMOUNT = 15_001  # ignore the smallest reporting bracket ($1,001-$15,000)
 
+# Market regime: when the S&P 500 closes below its 200-day average, breakouts and pullbacks
+# (chart-only setups) are paused. Insider and congressional buys still show, with a warning.
+REGIME_TICKER = "SPY"
+REGIME_MA = 200
+
 # Technical settings
 ATR_PERIOD = 14
 RSI_PERIOD = 14

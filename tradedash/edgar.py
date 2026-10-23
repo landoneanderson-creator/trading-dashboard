@@ -179,8 +179,10 @@ def update_cache(today: dt.date | None = None, client: SecClient | None = None) 
 
 def summarize(trades: pd.DataFrame, as_of: dt.date, lookback_days: int = config.INSIDER_LOOKBACK_DAYS) -> pd.DataFrame:
     """Per-ticker insider buying summary over the lookback window."""
+    empty = pd.DataFrame(columns=["ticker", "buyers", "total_value", "officer_buy", "opportunistic",
+                                  "last_buy", "owners"])
     if trades.empty:
-        return pd.DataFrame(columns=["ticker", "buyers", "total_value", "officer_buy", "last_buy", "owners"])
+        return empty
     df = trades.copy()
     df["trade_date"] = pd.to_datetime(df["trade_date"], errors="coerce")
     start = pd.Timestamp(as_of - dt.timedelta(days=lookback_days))
@@ -190,14 +192,18 @@ def summarize(trades: pd.DataFrame, as_of: dt.date, lookback_days: int = config.
     # aren't the "insider knows the business" signal, and closed-end funds are mostly noise.
     df = df[df["is_director"].astype(bool) | df["is_officer"].astype(bool)]
     df = df[~df["issuer"].fillna("").str.contains(r"\bFUND\b", case=False)]
+    # Insiders who buy in the same month every year carry no signal (see patterns.py).
+    pattern = df["pattern"] if "pattern" in df else pd.Series("new", index=df.index)
+    df = df[pattern != "routine"].assign(opportunistic=pattern == "opportunistic")
     if df.empty:
-        return pd.DataFrame(columns=["ticker", "buyers", "total_value", "officer_buy", "last_buy", "owners"])
+        return empty
     exec_title = df["title"].fillna("").str.contains(r"CEO|Chief Executive|CFO|Chief Financial|President", case=False)
     df["officer_buy"] = df["is_officer"].astype(bool) & exec_title
     grouped = df.groupby("ticker").agg(
         buyers=("owner", "nunique"),
         total_value=("value", "sum"),
         officer_buy=("officer_buy", "any"),
+        opportunistic=("opportunistic", "any"),
         last_buy=("trade_date", "max"),
         owners=("owner", lambda s: ", ".join(sorted(set(s))[:4])),
     ).reset_index()

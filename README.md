@@ -20,6 +20,20 @@ ATR is the stock's average daily price range over 14 days. **Grade A** ideas hav
 chart confirmation (uptrend or price above its 20-day average). **Grade B** ideas have one signal only.
 CEO/CFO purchases, more buyers, and bigger dollar amounts raise the score.
 
+### Two filters on top
+
+- **Routine vs. opportunistic insiders.** An insider who bought the same stock in the same calendar month
+  in each of the last three years is a *routine* buyer (think of a director who buys every March). Research
+  ([Cohen, Malloy and Pomorski, 2012](https://www.nber.org/digest/apr11/decoding-inside-information))
+  found those buys predict nothing, so they're ignored. An insider who bought every year but *off* their
+  usual schedule is *opportunistic*, and those buys predicted market-beating returns, so they score +5.
+  First-time buyers are scored as before. Buying history comes from the SEC's free quarterly Form 3/4/5
+  data sets (three years, cached in `data/insider_history.csv`, topped up when a new quarter is published).
+- **Market regime.** When the S&P 500 (SPY) closes below its 200-day average, breakouts and pullbacks are
+  paused because they fail far more often in falling markets. Insider and congressional ideas still show,
+  with a warning to size smaller. The backtest and the trading simulation apply the same rule, and the
+  TradingView indicator does too (it shades the chart red while the market is below its 200-day).
+
 ### How hold periods are chosen
 
 Every Saturday the backtest replays each setup over ~2 years of daily prices and measures returns
@@ -33,7 +47,8 @@ after the trade, entries assume the last close, and the backtest ignores costs a
 
 ## Data sources (all free)
 
-- **SEC EDGAR** Form 4 filings for insider purchases (needs a contact User-Agent, see setup)
+- **SEC EDGAR** Form 4 filings for insider purchases (needs a contact User-Agent, see setup), plus the
+  quarterly Form 3/4/5 data sets for three years of insider buying history
 - **U.S. House Clerk** periodic transaction reports for congressional stock purchases. Only e-filed reports
   are parsed (scanned paper filings are skipped), members can report up to 45 days after a trade, and the
   Senate isn't covered because its disclosure site blocks automated requests from cloud servers

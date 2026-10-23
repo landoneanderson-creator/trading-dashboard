@@ -18,10 +18,14 @@ MIN_SAMPLES = 30
 DEDUPE_DAYS = 5  # ignore repeat signals on the same stock within this many bars
 
 
-def _events_from_column(ind: pd.DataFrame, column: str) -> list[int]:
+def _events_from_column(ind: pd.DataFrame, column: str, allowed: pd.Series | None = None) -> list[int]:
+    """Bars where the column fires, skipping repeats and days outside `allowed` (the market regime)."""
+    fired = ind[column].astype(bool)
+    if allowed is not None:
+        fired &= allowed.reindex(ind.index).fillna(True).astype(bool)
     idx, last = [], -10_000
     for i in range(len(ind)):
-        if bool(ind[column].iloc[i]) and i - last > DEDUPE_DAYS:
+        if fired.iloc[i] and i - last > DEDUPE_DAYS:
             idx.append(i)
             last = i
     return idx
@@ -32,6 +36,8 @@ def _insider_events(ind: pd.DataFrame, ticker: str, trades: pd.DataFrame | None)
     if trades is None or trades.empty:
         return out
     t = trades[(trades["ticker"] == ticker) & (trades["value"] >= config.INSIDER_MIN_TRADE_VALUE)]
+    if "pattern" in t:
+        t = t[t["pattern"] != "routine"]
     if t.empty:
         return out
     filed = pd.to_datetime(t["filed"])
@@ -62,6 +68,9 @@ def run(prices: dict[str, pd.DataFrame], trades: pd.DataFrame | None = None,
         horizons: list[int] = config.BACKTEST_HORIZONS, congress_trades: pd.DataFrame | None = None) -> dict:
     samples = {s: {h: [] for h in horizons} for s in config.SETUPS}
     baseline = {h: [] for h in horizons}
+    # Chart setups only count on days the dashboard would have shown them (market above its 200-day).
+    market = prices.get(config.REGIME_TICKER)
+    allowed = indicators.risk_on(market) if market is not None else None
     for ticker, df in prices.items():
         ind = indicators.add_all(df)
         close = ind["close"].to_numpy()
@@ -70,8 +79,8 @@ def run(prices: dict[str, pd.DataFrame], trades: pd.DataFrame | None = None,
             if n > h:
                 fwd = close[h:] / close[:-h] - 1
                 baseline[h].extend(fwd[200:].tolist())  # skip warm-up bars
-        events = {"breakout": _events_from_column(ind, "breakout"),
-                  "pullback": _events_from_column(ind, "pullback")}
+        events = {"breakout": _events_from_column(ind, "breakout", allowed),
+                  "pullback": _events_from_column(ind, "pullback", allowed)}
         events.update(_insider_events(ind, ticker, trades))
         events.update(_congress_events(ind, ticker, congress_trades))
         for setup, idxs in events.items():
