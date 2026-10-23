@@ -186,6 +186,10 @@ def summarize(trades: pd.DataFrame, as_of: dt.date, lookback_days: int = config.
     start = pd.Timestamp(as_of - dt.timedelta(days=lookback_days))
     df = df[(df["trade_date"] >= start) & (df["value"] >= config.INSIDER_MIN_TRADE_VALUE)]
     df = df[df["ticker"].fillna("").str.fullmatch(r"[A-Z][A-Z.\-]{0,6}")]
+    # Officers and directors only: large holders (funds, insurers, activists) buying as 10% owners
+    # aren't the "insider knows the business" signal, and closed-end funds are mostly noise.
+    df = df[df["is_director"].astype(bool) | df["is_officer"].astype(bool)]
+    df = df[~df["issuer"].fillna("").str.contains(r"\bFUND\b", case=False)]
     if df.empty:
         return pd.DataFrame(columns=["ticker", "buyers", "total_value", "officer_buy", "last_buy", "owners"])
     exec_title = df["title"].fillna("").str.contains(r"CEO|Chief Executive|CFO|Chief Financial|President", case=False)

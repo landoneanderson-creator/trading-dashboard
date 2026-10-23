@@ -120,3 +120,12 @@ def test_update_cache_raises_when_every_index_is_missing(tmp_path, monkeypatch):
     monkeypatch.setattr(edgar.config, "INSIDER_BACKFILL_DAYS", 10)
     with pytest.raises(RuntimeError, match="blocked"):
         edgar.update_cache(dt.date(2026, 10, 16), BlockedClient())
+
+
+def test_summarize_ignores_ten_pct_holders_and_funds():
+    base = edgar.parse_form4(FORM4, "acc-1", "2026-10-16")[0]
+    holder = {**base, "ticker": "BIG", "owner": "Big Insurer", "is_officer": False,
+              "is_director": False, "is_ten_pct": True}
+    fund = {**base, "ticker": "CEF", "issuer": "Example Strategic Fund Inc", "is_director": True}
+    s = edgar.summarize(pd.DataFrame([base, holder, fund]), dt.date(2026, 10, 20))
+    assert s["ticker"].tolist() == ["ACME"]
