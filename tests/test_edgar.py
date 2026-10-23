@@ -67,7 +67,7 @@ def test_daily_index_url():
 
 def test_summarize_cluster():
     base = edgar.parse_form4(FORM4, "acc-1", "2026-10-16")[0]
-    other = {**base, "owner": "Smith Bob", "title": "", "is_officer": False, "accession": "acc-2"}
+    other = {**base, "owner": "Smith Bob", "title": "", "is_officer": False, "is_director": True, "accession": "acc-2"}
     old = {**base, "owner": "Old Buyer", "trade_date": "2026-01-01", "accession": "acc-3"}
     tiny = {**base, "owner": "Tiny", "value": 1000, "accession": "acc-4"}
     s = edgar.summarize(pd.DataFrame([base, other, old, tiny]), dt.date(2026, 10, 20))
