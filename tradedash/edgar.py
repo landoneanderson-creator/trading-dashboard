@@ -31,7 +31,8 @@ class SecClient:
         self._min_interval = 1.0 / config.SEC_MAX_REQUESTS_PER_SEC
         self._last = 0.0
 
-    def get(self, url: str) -> requests.Response | None:
+    def get(self, url: str, missing: tuple[int, ...] = (404,)) -> requests.Response | None:
+        """GET with rate limiting. Returns None for status codes listed in `missing`."""
         wait = self._min_interval - (time.monotonic() - self._last)
         if wait > 0:
             time.sleep(wait)
@@ -40,7 +41,7 @@ class SecClient:
             resp = self.session.get(url, timeout=30)
             if resp.status_code == 200:
                 return resp
-            if resp.status_code == 404:
+            if resp.status_code in missing:
                 return None
             time.sleep(2 ** (attempt + 1))
         resp.raise_for_status()
@@ -137,26 +138,36 @@ def update_cache(today: dt.date | None = None, client: SecClient | None = None) 
     client = client or SecClient()
     done = _processed_days()
     trades = load_trades()
-    new_rows = []
+    new_rows, indexes_found, indexes_tried = [], 0, 0
     for offset in range(config.INSIDER_BACKFILL_DAYS, -1, -1):
         day = today - dt.timedelta(days=offset)
         key = day.isoformat()
         if day.weekday() >= 5 or key in done:
             continue
-        resp = client.get(daily_index_url(day))
+        # EDGAR answers 403 (not 404) for index files that don't exist, e.g. on holidays.
+        indexes_tried += 1
+        resp = client.get(daily_index_url(day), missing=(403, 404))
         if resp is None:  # holiday, or index not published yet
             if offset > 1:
                 done.add(key)
             continue
+        indexes_found += 1
         paths = parse_form_index(resp.text)
         print(f"[edgar] {key}: {len(paths)} Form 4 filings")
         for path in paths:
             accession = path.rsplit("/", 1)[-1].removesuffix(".txt")
-            filing = client.get(ARCHIVES + path)
+            try:
+                filing = client.get(ARCHIVES + path, missing=(403, 404))
+            except requests.RequestException as exc:
+                print(f"[edgar] skipping {path}: {exc}")
+                continue
             if filing is not None:
                 new_rows.extend(parse_form4(filing.text, accession, key))
         done.add(key)
 
+    if indexes_tried >= 3 and indexes_found == 0:
+        raise RuntimeError(f"SEC EDGAR returned no daily indexes for {indexes_tried} days; "
+                           "requests are probably being blocked (check SEC_USER_AGENT)")
     if new_rows:
         trades = pd.concat([trades, pd.DataFrame(new_rows, columns=COLUMNS)], ignore_index=True)
         trades = trades.drop_duplicates(subset=["accession", "trade_date", "shares", "price"])

@@ -85,7 +85,7 @@ class FakeClient:
     def __init__(self):
         self.urls = []
 
-    def get(self, url):
+    def get(self, url, missing=(404,)):
         self.urls.append(url)
         if url.endswith(".idx"):
             return FakeResp(INDEX) if "20261015" in url else None
@@ -105,3 +105,18 @@ def test_update_cache_is_incremental(tmp_path, monkeypatch):
     edgar.update_cache(dt.date(2026, 10, 16), client2)
     assert sum(not u.endswith(".idx") for u in client2.urls) == 0  # 10/15 already processed
     assert filings_fetched == 1
+
+
+class BlockedClient:
+    def get(self, url, missing=(404,)):
+        return None  # every index "missing", as when SEC answers 403 to everything
+
+
+def test_update_cache_raises_when_every_index_is_missing(tmp_path, monkeypatch):
+    import pytest
+    monkeypatch.setattr(edgar, "TRADES_FILE", tmp_path / "t.csv")
+    monkeypatch.setattr(edgar, "PROCESSED_FILE", tmp_path / "p.txt")
+    monkeypatch.setattr(edgar.config, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(edgar.config, "INSIDER_BACKFILL_DAYS", 10)
+    with pytest.raises(RuntimeError, match="blocked"):
+        edgar.update_cache(dt.date(2026, 10, 16), BlockedClient())
