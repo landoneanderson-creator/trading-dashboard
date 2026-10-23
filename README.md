@@ -57,6 +57,25 @@ Open the Pine Editor in TradingView, paste `pine/trade_signals.pine`, and add it
 breakouts (BO) and pullbacks (PB), shades uptrends, and draws ATR stop and target lines. Its alert
 conditions work on any plan; webhook delivery needs a paid TradingView plan.
 
+## Open it on your own computer (free)
+
+GitHub keeps refreshing the data every weekday for free. To view it locally instead of on GitHub Pages:
+
+1. Install [Python 3.12+](https://www.python.org/downloads/) and [Git](https://git-scm.com/downloads).
+2. Once, in a terminal:
+   ```bash
+   git clone https://github.com/landoneanderson-creator/trading-dashboard.git
+   cd trading-dashboard
+   pip install -r requirements.txt
+   ```
+3. Any time you want to look:
+   ```bash
+   cd trading-dashboard
+   python -m tradedash serve
+   ```
+   It pulls the latest results and opens http://localhost:8000 in your browser. Add `--refresh` to
+   rebuild the data on your own computer first (set `SEC_USER_AGENT` in your terminal for insider data).
+
 ## Running locally
 
 ```bash

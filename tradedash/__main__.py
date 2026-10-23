@@ -49,15 +49,42 @@ def run_backtest() -> None:
     print(json.dumps(calibrated, indent=2))
 
 
+def serve(port: int, refresh: bool) -> None:
+    """Pull the latest results, optionally rebuild them here, and open the dashboard locally."""
+    import functools
+    import http.server
+    import subprocess
+    import webbrowser
+
+    if (config.ROOT / ".git").exists():
+        subprocess.run(["git", "-C", str(config.ROOT), "pull", "--quiet"], check=False)
+    if refresh:
+        daily()
+    handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory=str(config.DOCS_DIR))
+    with http.server.ThreadingHTTPServer(("127.0.0.1", port), handler) as httpd:
+        url = f"http://localhost:{port}/"
+        print(f"Dashboard running at {url} (press Ctrl+C to stop)")
+        webbrowser.open(url)
+        try:
+            httpd.serve_forever()
+        except KeyboardInterrupt:
+            pass
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(prog="tradedash")
     sub = parser.add_subparsers(dest="cmd", required=True)
     d = sub.add_parser("daily", help="refresh data and rebuild the dashboard")
     d.add_argument("--skip-insider", action="store_true", help="use cached insider data only")
     sub.add_parser("backtest", help="recalibrate hold periods from price history")
+    s = sub.add_parser("serve", help="open the dashboard on this computer")
+    s.add_argument("--port", type=int, default=8000)
+    s.add_argument("--refresh", action="store_true", help="rebuild the data here before opening")
     args = parser.parse_args()
     if args.cmd == "daily":
         daily(skip_insider=args.skip_insider)
+    elif args.cmd == "serve":
+        serve(args.port, args.refresh)
     else:
         run_backtest()
 
