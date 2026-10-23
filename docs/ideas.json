@@ -34,6 +34,40 @@
     ]
   },
   {
+    "ticker":"KO",
+    "grade":"A",
+    "score":28,
+    "setup":"congress_buy",
+    "as_of":"2026-10-23",
+    "entry":92.71,
+    "stop":88.78,
+    "target":99.0,
+    "hold_days":40,
+    "exit_by":"2026-12-18",
+    "rsi":60.0,
+    "reasons":[
+      "Rep. Kevin Hern bought at least $1,001 (disclosed 2026-09-25)",
+      "Uptrend: price above rising 50\/200-day averages"
+    ]
+  },
+  {
+    "ticker":"PG",
+    "grade":"A",
+    "score":28,
+    "setup":"congress_buy",
+    "as_of":"2026-10-23",
+    "entry":161.02,
+    "stop":153.05,
+    "target":173.77,
+    "hold_days":40,
+    "exit_by":"2026-12-18",
+    "rsi":63.7,
+    "reasons":[
+      "Rep. Lloyd Doggett bought at least $1,001 (disclosed 2026-09-08)",
+      "Uptrend: price above rising 50\/200-day averages"
+    ]
+  },
+  {
     "ticker":"APLD",
     "grade":"B",
     "score":50,
@@ -82,6 +116,23 @@
     "reasons":[
       "2 insiders bought $256,530 in the last 30 days",
       "CEO\/CFO\/President among the buyers"
+    ]
+  },
+  {
+    "ticker":"PEP",
+    "grade":"B",
+    "score":38,
+    "setup":"insider_buy",
+    "as_of":"2026-10-23",
+    "entry":135.77,
+    "stop":128.56,
+    "target":147.31,
+    "hold_days":40,
+    "exit_by":"2026-12-18",
+    "rsi":59.9,
+    "reasons":[
+      "Insider bought $17,904,168 (POHLAD ROBERT C)",
+      "Rep. Scott Scott Franklin bought at least $1,001 (disclosed 2026-09-17)"
     ]
   },
   {
@@ -136,19 +187,19 @@
     ]
   },
   {
-    "ticker":"PEP",
+    "ticker":"HD",
     "grade":"B",
     "score":30,
-    "setup":"insider_buy",
+    "setup":"congress_buy",
     "as_of":"2026-10-23",
-    "entry":135.77,
-    "stop":128.56,
-    "target":147.31,
+    "entry":319.83,
+    "stop":301.17,
+    "target":349.69,
     "hold_days":40,
     "exit_by":"2026-12-18",
-    "rsi":59.9,
+    "rsi":62.6,
     "reasons":[
-      "Insider bought $17,904,168 (POHLAD ROBERT C)"
+      "2 members of Congress bought (at least $2,002): David J. Taylor, Lloyd Doggett"
     ]
   },
   {
@@ -181,6 +232,22 @@
     "rsi":53.4,
     "reasons":[
       "Insider bought $1,537,788 (INGRAM ORRIN H II)"
+    ]
+  },
+  {
+    "ticker":"GS",
+    "grade":"B",
+    "score":25,
+    "setup":"congress_buy",
+    "as_of":"2026-10-23",
+    "entry":875.68,
+    "stop":814.71,
+    "target":973.23,
+    "hold_days":40,
+    "exit_by":"2026-12-18",
+    "rsi":37.5,
+    "reasons":[
+      "2 members of Congress bought (at least $2,002): Gilbert Cisneros, Michael Rulli"
     ]
   },
   {
@@ -341,70 +408,6 @@
     "rsi":56.8,
     "reasons":[
       "Insider bought $40,000 (Velazquez David M)"
-    ]
-  },
-  {
-    "ticker":"CRESY",
-    "grade":"B",
-    "score":11,
-    "setup":"insider_buy",
-    "as_of":"2026-10-23",
-    "entry":11.45,
-    "stop":10.39,
-    "target":13.14,
-    "hold_days":40,
-    "exit_by":"2026-12-18",
-    "rsi":48.3,
-    "reasons":[
-      "Insider bought $92,738 (Elsztain Alejandro Gustavo)"
-    ]
-  },
-  {
-    "ticker":"AGMB",
-    "grade":"B",
-    "score":11,
-    "setup":"insider_buy",
-    "as_of":"2026-10-23",
-    "entry":9.05,
-    "stop":7.06,
-    "target":12.23,
-    "hold_days":40,
-    "exit_by":"2026-12-18",
-    "rsi":41.6,
-    "reasons":[
-      "Insider bought $88,800 (Epstein David R)"
-    ]
-  },
-  {
-    "ticker":"NBIS",
-    "grade":"B",
-    "score":10,
-    "setup":"insider_buy",
-    "as_of":"2026-10-23",
-    "entry":158.74,
-    "stop":118.95,
-    "target":222.4,
-    "hold_days":40,
-    "exit_by":"2026-12-18",
-    "rsi":30.2,
-    "reasons":[
-      "Insider bought $75,476 (Grimme Arne)"
-    ]
-  },
-  {
-    "ticker":"FUL",
-    "grade":"B",
-    "score":8,
-    "setup":"insider_buy",
-    "as_of":"2026-10-23",
-    "entry":49.61,
-    "stop":45.92,
-    "target":55.51,
-    "hold_days":40,
-    "exit_by":"2026-12-18",
-    "rsi":41.3,
-    "reasons":[
-      "Insider bought $25,000 (Malik Muhammad Shahbaz)"
     ]
   }
 ]
