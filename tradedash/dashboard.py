@@ -97,8 +97,22 @@ def _backtest_table(report: dict | None) -> str:
             "<th>Win rate</th><th>Edge vs. any day</th></tr>" + "".join(rows) + "</table></div>")
 
 
+def _simulation_table(results: list[dict] | None) -> str:
+    if not results:
+        return "<p class='muted'>No simulation yet.</p>"
+    rows = "".join(
+        f"<tr><td>{html.escape(r['variant'])}</td><td>{r['start']} to {r['end']}</td>"
+        f"<td>{r['total_return']:+.1%}</td><td>{r['annual_return']:+.1%}</td><td>{r['max_drawdown']:.1%}</td>"
+        f"<td>{r['overall'].get('trades', 0)}</td><td>{r['overall'].get('win_rate', 0):.0%}</td>"
+        f"<td>{r['benchmark_return']:+.1%}</td></tr>" for r in results)
+    return ("<div class='scroll'><table><tr><th>Strategy</th><th>Period</th><th>Total return</th><th>Per year</th>"
+            "<th>Worst drop</th><th>Trades</th><th>Win rate</th><th>S&amp;P 500 (SPY)</th></tr>" + rows +
+            "</table></div><p class='muted'>Buys the top-ranked ideas at the next open, 10 equal positions at most, "
+            "sells at the stop, target or end of the hold, 0.1% costs per trade. Past results don't predict future ones.</p>")
+
+
 def render(ideas: pd.DataFrame, news: dict[str, list[dict]], report: dict | None,
-           generated: dt.datetime | None = None) -> str:
+           generated: dt.datetime | None = None, simulation: list[dict] | None = None) -> str:
     generated = generated or dt.datetime.now(dt.timezone.utc)
     if ideas.empty:
         body = "<p>No setups passed the filters today.</p>"
@@ -114,6 +128,8 @@ def render(ideas: pd.DataFrame, news: dict[str, list[dict]], report: dict | None
 <p class="muted">Grade A: insider or congressional buying confirmed by the chart. Grade B: one signal only.
 Stops and targets are multiples of the stock's average daily range (ATR).</p>
 <div class="cards">{body}</div>
+<h2>What following the dashboard would have returned</h2>
+{_simulation_table(simulation)}
 <h2>How the hold periods were chosen</h2>
 {_backtest_table(report)}
 <p class="muted" style="margin-top:24px">Data: SEC EDGAR Form 4 filings, U.S. House trade disclosures, Yahoo Finance / Stooq daily prices,

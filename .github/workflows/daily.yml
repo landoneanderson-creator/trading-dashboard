@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       task:
-        description: "daily or backtest"
+        description: "daily, backtest or simulate"
         default: daily
 
 permissions:
@@ -20,7 +20,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 150
     env:
       SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
     steps:
@@ -33,6 +33,9 @@ jobs:
       - name: Backtest
         if: github.event.schedule == '0 14 * * 6' || inputs.task == 'backtest'
         run: python -m tradedash backtest
+      - name: Simulate trading the dashboard
+        if: github.event.schedule == '0 14 * * 6' || inputs.task == 'simulate'
+        run: python -m tradedash simulate
       - name: Daily refresh
         run: python -m tradedash daily
       - name: Commit results

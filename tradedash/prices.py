@@ -30,7 +30,7 @@ def from_yahoo(ticker: str, range_: str = "2y", session: requests.Session | None
     return df.dropna()
 
 
-def from_stooq(ticker: str, session: requests.Session | None = None) -> pd.DataFrame:
+def from_stooq(ticker: str, range_: str = "2y", session: requests.Session | None = None) -> pd.DataFrame:
     s = session or requests
     sym = ticker.lower().replace(".", "-") + ".us"
     resp = s.get("https://stooq.com/q/d/l/", params={"s": sym, "i": "d"}, headers=HEADERS, timeout=20)
@@ -40,13 +40,13 @@ def from_stooq(ticker: str, session: requests.Session | None = None) -> pd.DataF
         raise ValueError(f"no stooq data for {ticker}")
     df = df.rename(columns=str.lower).set_index("date")
     df.index = pd.to_datetime(df.index)
-    return df[["open", "high", "low", "close", "volume"]].tail(520).dropna()
+    return df[["open", "high", "low", "close", "volume"]].tail(260 * int(range_.rstrip("y"))).dropna()
 
 
-def get_history(ticker: str, session: requests.Session | None = None) -> pd.DataFrame | None:
+def get_history(ticker: str, session: requests.Session | None = None, range_: str = "2y") -> pd.DataFrame | None:
     for fetch in (from_yahoo, from_stooq):
         try:
-            df = fetch(ticker, session=session)
+            df = fetch(ticker, range_=range_, session=session)
             if len(df) >= 60:
                 return df
         except Exception as exc:  # network errors, bad symbols, schema changes
@@ -54,11 +54,11 @@ def get_history(ticker: str, session: requests.Session | None = None) -> pd.Data
     return None
 
 
-def get_many(tickers: list[str], pause: float = 0.25) -> dict[str, pd.DataFrame]:
+def get_many(tickers: list[str], pause: float = 0.25, range_: str = "2y") -> dict[str, pd.DataFrame]:
     session = requests.Session()
     out = {}
     for t in tickers:
-        df = get_history(t, session=session)
+        df = get_history(t, session=session, range_=range_)
         if df is not None:
             out[t] = df
         time.sleep(pause)

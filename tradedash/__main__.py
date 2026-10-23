@@ -5,9 +5,10 @@ import argparse
 import datetime as dt
 import json
 
+import pandas as pd
 import requests
 
-from . import backtest, config, congress, dashboard, edgar, news, prices, signals
+from . import backtest, config, congress, dashboard, edgar, news, prices, signals, simulate
 
 
 def load_universe() -> list[str]:
@@ -43,7 +44,8 @@ def daily(skip_insider: bool = False) -> None:
     headlines = {t: news.headlines(t, session=session) for t in ideas.get("ticker", [])}
     report_file = config.DATA_DIR / "backtest_report.json"
     report = json.loads(report_file.read_text()) if report_file.exists() else None
-    dashboard.write(dashboard.render(ideas, headlines, report))
+    sim = json.loads(simulate.RESULTS_FILE.read_text()) if simulate.RESULTS_FILE.exists() else None
+    dashboard.write(dashboard.render(ideas, headlines, report, simulation=sim))
     (config.DOCS_DIR / "ideas.json").write_text(ideas.to_json(orient="records", indent=2))
     print(f"[daily] wrote {len(ideas)} ideas")
 
@@ -57,6 +59,23 @@ def run_backtest() -> None:
     report = backtest.run(history, trades, congress_trades=ctrades)
     calibrated = backtest.save_hold_periods(report)
     print(json.dumps(calibrated, indent=2))
+
+
+def run_simulation() -> None:
+    today = dt.date.today()
+    insider = simulate.load_history(today)
+    usable = edgar.summarize(insider, today, lookback_days=10_000)  # same filters the dashboard applies
+    ctrades = congress.load_trades()
+    tickers = list(dict.fromkeys(["SPY"] + load_universe() + usable["ticker"].tolist()
+                                 + ctrades["ticker"].dropna().unique().tolist()))
+    print(f"[simulate] fetching 3 years of prices for {len(tickers)} tickers")
+    history = prices.get_many(tickers, pause=0.1, range_="3y")
+    filed = pd.to_datetime(insider["filed"], errors="coerce").dropna()
+    start = filed.min() if not filed.empty else pd.Timestamp(today - dt.timedelta(days=730))
+    results = [simulate.run(history, insider, ctrades, start),
+               simulate.run(history, insider, ctrades, start, grade_a_only=True)]
+    simulate.save(results)
+    print(json.dumps(results, indent=2, default=str))
 
 
 def serve(port: int, refresh: bool) -> None:
@@ -100,6 +119,7 @@ def main() -> None:
     d = sub.add_parser("daily", help="refresh data and rebuild the dashboard")
     d.add_argument("--skip-insider", action="store_true", help="use cached insider data only")
     sub.add_parser("backtest", help="recalibrate hold periods from price history")
+    sub.add_parser("simulate", help="simulate trading the dashboard's rules on past data")
     s = sub.add_parser("serve", help="open the dashboard on this computer")
     s.add_argument("--port", type=int, default=8000)
     s.add_argument("--refresh", action="store_true", help="rebuild the data here before opening")
@@ -108,6 +128,8 @@ def main() -> None:
         daily(skip_insider=args.skip_insider)
     elif args.cmd == "serve":
         serve(args.port, args.refresh)
+    elif args.cmd == "simulate":
+        run_simulation()
     else:
         run_backtest()
 
