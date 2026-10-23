@@ -312,22 +312,6 @@
     ]
   },
   {
-    "ticker":"FIS",
-    "grade":"B",
-    "score":15,
-    "setup":"insider_buy",
-    "as_of":"2026-10-23",
-    "entry":37.53,
-    "stop":34.68,
-    "target":42.09,
-    "hold_days":40,
-    "exit_by":"2026-12-18",
-    "rsi":60.1,
-    "reasons":[
-      "Insider bought $57,694 (Goldstein Jeffrey A)"
-    ]
-  },
-  {
     "ticker":"YORW",
     "grade":"B",
     "score":14,
@@ -405,6 +389,22 @@
     "rsi":30.2,
     "reasons":[
       "Insider bought $75,476 (Grimme Arne)"
+    ]
+  },
+  {
+    "ticker":"FUL",
+    "grade":"B",
+    "score":8,
+    "setup":"insider_buy",
+    "as_of":"2026-10-23",
+    "entry":49.61,
+    "stop":45.92,
+    "target":55.51,
+    "hold_days":40,
+    "exit_by":"2026-12-18",
+    "rsi":41.3,
+    "reasons":[
+      "Insider bought $25,000 (Malik Muhammad Shahbaz)"
     ]
   }
 ]
