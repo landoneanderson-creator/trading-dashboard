@@ -49,7 +49,9 @@ after the trade, entries assume the last close, and the backtest ignores costs a
    Turn on GitHub Pages (Settings → Pages → Deploy from branch → `main` / `docs`) to get a URL.
    Pages on a private repo needs a paid GitHub plan.
 
-After that it refreshes every weekday at 22:30 UTC, after the market close.
+After that it refreshes every hour while the US market is open (weekdays, :45 past the hour) and once
+more at 22:30 UTC after the close. Intraday refreshes use the session's prices so far, so volume-based
+breakouts are most reliable after the close.
 
 ### TradingView indicator
 
@@ -73,7 +75,8 @@ GitHub keeps refreshing the data every weekday for free. To view it locally inst
    cd trading-dashboard
    python -m tradedash serve
    ```
-   It pulls the latest results and opens http://localhost:8000 in your browser. Add `--refresh` to
+   It pulls the latest results, opens http://localhost:8000 in your browser, and keeps pulling new
+   results every 15 minutes while it runs (the page reloads itself). Add `--refresh` to
    rebuild the data on your own computer first (set `SEC_USER_AGENT` in your terminal for insider data).
 
 ## Running locally

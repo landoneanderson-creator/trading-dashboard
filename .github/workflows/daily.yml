@@ -2,7 +2,8 @@ name: Refresh dashboard
 
 on:
   schedule:
-    - cron: "30 22 * * 1-5"  # weekdays, after the US market close
+    - cron: "45 13-21 * * 1-5"  # hourly while the US market is open (covers EDT and EST)
+    - cron: "30 22 * * 1-5"     # weekdays, final refresh after the close
     - cron: "0 14 * * 6"     # Saturday: recalibrate hold periods
   workflow_dispatch:
     inputs:

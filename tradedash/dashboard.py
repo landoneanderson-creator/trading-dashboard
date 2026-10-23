@@ -67,7 +67,7 @@ def _card(idea: pd.Series, news: list[dict]) -> str:
     <a href="{_tv_link(idea['ticker'])}" target="_blank" rel="noopener">Open in TradingView</a>
   </div>
   <div class="plan">
-    <div>Entry (last close)<b>${idea['entry']:,.2f}</b></div>
+    <div>Entry (last price)<b>${idea['entry']:,.2f}</b></div>
     <div class="stop">Stop<b>${idea['stop']:,.2f}</b></div>
     <div>Target<b>${idea['target']:,.2f}</b></div>
     <div>Hold<b>{idea['hold_days']} trading days</b></div>
@@ -105,10 +105,11 @@ def render(ideas: pd.DataFrame, news: dict[str, list[dict]], report: dict | None
         body = "".join(_card(row, news.get(row["ticker"], [])) for _, row in ideas.iterrows())
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Trade Signal Dashboard</title><style>{CSS}</style></head>
+<meta http-equiv="refresh" content="900"><title>Trade Signal Dashboard</title><style>{CSS}</style></head>
 <body><main>
 <h1>Trade Signal Dashboard</h1>
-<div class="muted">Updated {generated:%Y-%m-%d %H:%M} UTC after the market close. Ranked by grade, then score.</div>
+<div class="muted">Updated {generated:%Y-%m-%d %H:%M} UTC. Refreshes hourly while the market is open; during the day
+prices and volume are for the session so far. Ranked by grade, then score.</div>
 <div class="warn"><b>Not financial advice.</b> {DISCLAIMER}</div>
 <p class="muted">Grade A: insider buying confirmed by the chart. Grade B: one signal only.
 Stops and targets are multiples of the stock's average daily range (ATR).</p>

@@ -56,10 +56,23 @@ def serve(port: int, refresh: bool) -> None:
     import subprocess
     import webbrowser
 
-    if (config.ROOT / ".git").exists():
-        subprocess.run(["git", "-C", str(config.ROOT), "pull", "--quiet"], check=False)
+    import threading
+    import time
+
+    def pull() -> None:
+        if (config.ROOT / ".git").exists():
+            subprocess.run(["git", "-C", str(config.ROOT), "pull", "--quiet"], check=False)
+
+    def keep_updated() -> None:
+        # GitHub refreshes the data hourly; fetch it every 15 minutes. The page reloads itself.
+        while True:
+            time.sleep(15 * 60)
+            pull()
+
+    pull()
     if refresh:
         daily()
+    threading.Thread(target=keep_updated, daemon=True).start()
     handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory=str(config.DOCS_DIR))
     with http.server.ThreadingHTTPServer(("127.0.0.1", port), handler) as httpd:
         url = f"http://localhost:{port}/"
