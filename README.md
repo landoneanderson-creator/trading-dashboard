@@ -49,9 +49,8 @@ after the trade, entries assume the last close, and the backtest ignores costs a
    Turn on GitHub Pages (Settings → Pages → Deploy from branch → `main` / `docs`) to get a URL.
    Pages on a private repo needs a paid GitHub plan.
 
-After that it refreshes every hour while the US market is open (weekdays, :45 past the hour) and once
-more at 22:30 UTC after the close. Intraday refreshes use the session's prices so far, so volume-based
-breakouts are most reliable after the close.
+After that it refreshes every weekday at 22:30 UTC, after the market close. Signals use daily bars, so
+one refresh a day is all they need: check it in the evening and place orders the next morning.
 
 ### TradingView indicator
 
