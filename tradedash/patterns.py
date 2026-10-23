@@ -49,11 +49,10 @@ def update_history(today: dt.date | None = None, session: requests.Session | Non
         session.headers.update({"User-Agent": config.SEC_USER_AGENT})
     frames = [history]
     for y, q in missing:
-        resp = session.get(simulate.DATASETS.format(y=y, q=q), timeout=300)
-        if resp.status_code != 200:
-            print(f"[patterns] {y}Q{q} insider data set unavailable ({resp.status_code})")
+        raw = simulate.fetch_dataset(session, y, q)
+        if raw is None:
             continue
-        part = simulate.parse_sec_dataset(resp.content)
+        part = simulate.parse_sec_dataset(raw)
         part = part[part["is_director"] | part["is_officer"]]
         print(f"[patterns] {y}Q{q}: {len(part)} officer/director purchases")
         frames.append(part[COLUMNS])

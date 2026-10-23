@@ -19,7 +19,11 @@ from . import config, congress, edgar, indicators, signals
 
 MAX_POSITIONS = 10
 COST = 0.001  # round-trip commissions and slippage, as a fraction of the trade
-DATASETS = "https://www.sec.gov/files/structureddata/data/form-345-data-sets/{y}q{q}_form345.zip"
+# The SEC has published these under two paths; newer quarters use the second one.
+DATASET_URLS = [
+    "https://www.sec.gov/files/structureddata/data/insider-transactions-data-sets/{y}q{q}_form345.zip",
+    "https://www.sec.gov/files/datastandardsinnovation/data/insider-transactions-data-sets/{y}q{q}_form345.zip",
+]
 RESULTS_FILE = config.DATA_DIR / "simulation.json"
 
 
@@ -83,16 +87,27 @@ def parse_sec_dataset(raw: bytes) -> pd.DataFrame:
     return out.dropna(subset=["value"])
 
 
+def fetch_dataset(session: requests.Session, y: int, q: int) -> bytes | None:
+    """Download one quarterly Form 3/4/5 data set, trying each known URL layout."""
+    status = None
+    for url in DATASET_URLS:
+        resp = session.get(url.format(y=y, q=q), timeout=300)
+        if resp.status_code == 200:
+            return resp.content
+        status = resp.status_code
+    print(f"[simulate] {y}Q{q} insider data set unavailable ({status})")
+    return None
+
+
 def load_history(today: dt.date, quarters: int = 8) -> pd.DataFrame:
     session = requests.Session()
     session.headers.update({"User-Agent": config.SEC_USER_AGENT})
     frames = []
     for y, q in past_quarters(today, quarters):
-        resp = session.get(DATASETS.format(y=y, q=q), timeout=300)
-        if resp.status_code != 200:
-            print(f"[simulate] {y}Q{q} insider data set unavailable ({resp.status_code})")
+        raw = fetch_dataset(session, y, q)
+        if raw is None:
             continue
-        part = parse_sec_dataset(resp.content)
+        part = parse_sec_dataset(raw)
         print(f"[simulate] {y}Q{q}: {len(part)} insider purchases")
         frames.append(part)
     return pd.concat(frames, ignore_index=True) if frames else pd.DataFrame(columns=edgar.COLUMNS)
