@@ -7,7 +7,7 @@ import json
 
 import requests
 
-from . import backtest, config, dashboard, edgar, news, prices, signals
+from . import backtest, config, congress, dashboard, edgar, news, prices, signals
 
 
 def load_universe() -> list[str]:
@@ -25,11 +25,19 @@ def daily(skip_insider: bool = False) -> None:
             ua = config.SEC_USER_AGENT
             print(f"::warning::SEC EDGAR update failed, using cached insider data: {exc} "
                   f"(User-Agent has an email: {'@' in ua}, words: {len(ua.split())})")
+    ctrades = congress.load_trades()
+    if not skip_insider:
+        try:
+            ctrades = congress.update_cache(today)
+        except Exception as exc:
+            print(f"::warning::House disclosures update failed, using cached congress data: {exc}")
     summary = edgar.summarize(trades, today)
-    tickers = list(dict.fromkeys(load_universe() + summary["ticker"].tolist()))
-    print(f"[daily] fetching prices for {len(tickers)} tickers ({len(summary)} with insider buying)")
+    csummary = congress.summarize(ctrades, today)
+    tickers = list(dict.fromkeys(load_universe() + summary["ticker"].tolist() + csummary["ticker"].tolist()))
+    print(f"[daily] fetching prices for {len(tickers)} tickers ({len(summary)} with insider buying, "
+          f"{len(csummary)} with congressional buying)")
     history = prices.get_many(tickers)
-    ideas = signals.build_ideas(history, summary)
+    ideas = signals.build_ideas(history, summary, csummary)
 
     session = requests.Session()
     headlines = {t: news.headlines(t, session=session) for t in ideas.get("ticker", [])}
@@ -42,9 +50,11 @@ def daily(skip_insider: bool = False) -> None:
 
 def run_backtest() -> None:
     trades = edgar.load_trades()
-    tickers = list(dict.fromkeys(load_universe() + trades["ticker"].dropna().unique().tolist()))
+    ctrades = congress.load_trades()
+    extra = trades["ticker"].dropna().unique().tolist() + ctrades["ticker"].dropna().unique().tolist()
+    tickers = list(dict.fromkeys(load_universe() + extra))
     history = prices.get_many(tickers)
-    report = backtest.run(history, trades)
+    report = backtest.run(history, trades, congress_trades=ctrades)
     calibrated = backtest.save_hold_periods(report)
     print(json.dumps(calibrated, indent=2))
 

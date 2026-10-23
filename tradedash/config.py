@@ -17,6 +17,9 @@ INSIDER_BACKFILL_DAYS = int(os.environ.get("INSIDER_BACKFILL_DAYS", "10"))
 INSIDER_LOOKBACK_DAYS = 30        # window used to score insider buying
 INSIDER_MIN_TRADE_VALUE = 25_000  # ignore tiny open-market buys
 
+# House members' stock purchases, by the date they were disclosed (trades can be up to 45 days older).
+CONGRESS_LOOKBACK_DAYS = 45
+
 # Technical settings
 ATR_PERIOD = 14
 RSI_PERIOD = 14
@@ -30,6 +33,7 @@ MIN_AVG_DOLLAR_VOLUME = 5_000_000
 SETUPS = {
     "insider_cluster": {"stop_atr": 2.5, "target_atr": 5.0, "hold_days": 60},
     "insider_buy": {"stop_atr": 2.5, "target_atr": 4.0, "hold_days": 40},
+    "congress_buy": {"stop_atr": 2.5, "target_atr": 4.0, "hold_days": 40},
     "breakout": {"stop_atr": 2.0, "target_atr": 4.0, "hold_days": 15},
     "pullback": {"stop_atr": 1.5, "target_atr": 3.0, "hold_days": 10},
 }

@@ -35,6 +35,20 @@ def insider_score(ins: pd.Series | None) -> tuple[int, list[str]]:
     return min(score, 50), reasons
 
 
+def congress_score(c: pd.Series | None) -> tuple[int, list[str]]:
+    if c is None:
+        return 0, []
+    members, low = int(c["members"]), float(c["total_low"])
+    filed = pd.Timestamp(c["last_filed"]).date().isoformat()
+    if members >= 2:
+        score = min(30, 25 + 5 * (members - 2))
+        reason = f"{members} members of Congress bought (at least ${low:,.0f}): {c['names']}"
+    else:
+        score = 12 if low >= 50_000 else 8
+        reason = f"Rep. {c['names']} bought at least ${low:,.0f} (disclosed {filed})"
+    return score, [reason]
+
+
 def technical_score(row: pd.Series) -> tuple[int, list[str]]:
     score, reasons = 0, []
     if row["uptrend"]:
@@ -54,9 +68,17 @@ def technical_score(row: pd.Series) -> tuple[int, list[str]]:
     return max(0, min(score, 50)), reasons
 
 
-def build_ideas(prices: dict[str, pd.DataFrame], insider_summary: pd.DataFrame) -> pd.DataFrame:
+def _by_ticker(summary: pd.DataFrame | None) -> dict:
+    if summary is None or summary.empty:
+        return {}
+    return {r["ticker"]: r for _, r in summary.iterrows()}
+
+
+def build_ideas(prices: dict[str, pd.DataFrame], insider_summary: pd.DataFrame,
+                congress_summary: pd.DataFrame | None = None) -> pd.DataFrame:
     holds = hold_periods()
-    ins_by_ticker = {r["ticker"]: r for _, r in insider_summary.iterrows()} if not insider_summary.empty else {}
+    ins_by_ticker = _by_ticker(insider_summary)
+    con_by_ticker = _by_ticker(congress_summary)
     ideas = []
     for ticker, df in prices.items():
         ind = indicators.add_all(df)
@@ -64,14 +86,19 @@ def build_ideas(prices: dict[str, pd.DataFrame], insider_summary: pd.DataFrame) 
         if pd.isna(row["atr"]) or row["close"] < config.MIN_PRICE:
             continue
         ins = ins_by_ticker.get(ticker)
-        min_liquidity = config.MIN_AVG_DOLLAR_VOLUME / 5 if ins is not None else config.MIN_AVG_DOLLAR_VOLUME
+        con = con_by_ticker.get(ticker)
+        catalyst = ins is not None or con is not None
+        min_liquidity = config.MIN_AVG_DOLLAR_VOLUME / 5 if catalyst else config.MIN_AVG_DOLLAR_VOLUME
         if pd.isna(row["dollar_vol"]) or row["dollar_vol"] < min_liquidity:
             continue
 
         i_score, i_reasons = insider_score(ins)
+        c_score, c_reasons = congress_score(con)
         t_score, t_reasons = technical_score(row)
         if ins is not None:
             setup = "insider_cluster" if int(ins["buyers"]) >= 2 else "insider_buy"
+        elif con is not None:
+            setup = "congress_buy"
         elif row["breakout"]:
             setup = "breakout"
         elif row["pullback"]:
@@ -81,14 +108,14 @@ def build_ideas(prices: dict[str, pd.DataFrame], insider_summary: pd.DataFrame) 
 
         plan = config.SETUPS[setup]
         # Grade A = a data catalyst confirmed by the chart; B = one or the other.
-        confirmed = i_score > 0 and (row["uptrend"] or row["close"] > row["sma20"])
+        confirmed = catalyst and (row["uptrend"] or row["close"] > row["sma20"])
         grade = "A" if confirmed and t_score >= 15 else "B"
         hold = holds[setup]
         as_of = ind.index[-1]
         ideas.append({
             "ticker": ticker,
             "grade": grade,
-            "score": i_score + t_score,
+            "score": i_score + c_score + t_score,
             "setup": setup,
             "as_of": as_of.date().isoformat(),
             "entry": round(row["close"], 2),
@@ -97,7 +124,7 @@ def build_ideas(prices: dict[str, pd.DataFrame], insider_summary: pd.DataFrame) 
             "hold_days": hold,
             "exit_by": (as_of + pd.offsets.BDay(hold)).date().isoformat(),
             "rsi": round(row["rsi"], 1),
-            "reasons": i_reasons + t_reasons,
+            "reasons": i_reasons + c_reasons + t_reasons,
         })
     if not ideas:
         return pd.DataFrame()

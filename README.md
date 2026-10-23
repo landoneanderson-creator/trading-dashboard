@@ -12,10 +12,11 @@ You place the trades yourself; nothing here connects to a broker.
 |---|---|---|---|
 | Insider cluster buy | 2+ company insiders bought shares on the open market in the last 30 days (SEC Form 4, code P, $25k+ each) | 2.5 / 5 ATR | 60 trading days |
 | Insider buy | One insider bought $25k+ | 2.5 / 4 ATR | 40 trading days |
+| Congress buy | A member of the U.S. House disclosed buying the stock in the last 45 days (periodic transaction reports) | 2.5 / 4 ATR | 40 trading days |
 | Breakout | Close above the prior 20-day high on 1.5x average volume, above the 50-day average | 2 / 4 ATR | 15 trading days |
 | Pullback | RSI(14) under 40 while the 50-day average is above the 200-day | 1.5 / 3 ATR | 10 trading days |
 
-ATR is the stock's average daily price range over 14 days. **Grade A** ideas have insider buying *and*
+ATR is the stock's average daily price range over 14 days. **Grade A** ideas have insider or congressional buying *and*
 chart confirmation (uptrend or price above its 20-day average). **Grade B** ideas have one signal only.
 CEO/CFO purchases, more buyers, and bigger dollar amounts raise the score.
 
@@ -33,6 +34,9 @@ after the trade, entries assume the last close, and the backtest ignores costs a
 ## Data sources (all free)
 
 - **SEC EDGAR** Form 4 filings for insider purchases (needs a contact User-Agent, see setup)
+- **U.S. House Clerk** periodic transaction reports for congressional stock purchases. Only e-filed reports
+  are parsed (scanned paper filings are skipped), members can report up to 45 days after a trade, and the
+  Senate isn't covered because its disclosure site blocks automated requests from cloud servers
 - **Yahoo Finance** daily prices, with **Stooq** as backup
 - **Yahoo Finance RSS** headlines (shown for context, not scored)
 - **TradingView** for charts: every idea links to its chart, and `pine/trade_signals.pine` draws the

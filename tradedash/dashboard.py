@@ -11,6 +11,7 @@ from . import config
 SETUP_LABELS = {
     "insider_cluster": "Insider cluster buy",
     "insider_buy": "Insider buy",
+    "congress_buy": "Congress buy",
     "breakout": "Breakout",
     "pullback": "Pullback in uptrend",
 }
@@ -110,12 +111,12 @@ def render(ideas: pd.DataFrame, news: dict[str, list[dict]], report: dict | None
 <h1>Trade Signal Dashboard</h1>
 <div class="muted">Updated {generated:%Y-%m-%d %H:%M} UTC after the market close. Ranked by grade, then score.</div>
 <div class="warn"><b>Not financial advice.</b> {DISCLAIMER}</div>
-<p class="muted">Grade A: insider buying confirmed by the chart. Grade B: one signal only.
+<p class="muted">Grade A: insider or congressional buying confirmed by the chart. Grade B: one signal only.
 Stops and targets are multiples of the stock's average daily range (ATR).</p>
 <div class="cards">{body}</div>
 <h2>How the hold periods were chosen</h2>
 {_backtest_table(report)}
-<p class="muted" style="margin-top:24px">Data: SEC EDGAR Form 4 filings, Yahoo Finance / Stooq daily prices,
+<p class="muted" style="margin-top:24px">Data: SEC EDGAR Form 4 filings, U.S. House trade disclosures, Yahoo Finance / Stooq daily prices,
 Yahoo Finance headlines. Charts: TradingView.</p>
 </main></body></html>"""
 

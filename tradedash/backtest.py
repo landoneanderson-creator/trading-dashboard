@@ -46,8 +46,20 @@ def _insider_events(ind: pd.DataFrame, ticker: str, trades: pd.DataFrame | None)
     return out
 
 
+def _congress_events(ind: pd.DataFrame, ticker: str, ctrades: pd.DataFrame | None) -> dict[str, list[int]]:
+    if ctrades is None or ctrades.empty:
+        return {"congress_buy": []}
+    t = ctrades[(ctrades["ticker"] == ticker) & (ctrades["tx_type"] == "P") & (ctrades["asset_type"] == "ST")]
+    idx = []
+    for day in sorted(pd.to_datetime(t["filed"]).unique()):
+        pos = int(ind.index.searchsorted(day))  # first bar once the purchase was public
+        if pos < len(ind) and (not idx or pos - idx[-1] > DEDUPE_DAYS):
+            idx.append(pos)
+    return {"congress_buy": idx}
+
+
 def run(prices: dict[str, pd.DataFrame], trades: pd.DataFrame | None = None,
-        horizons: list[int] = config.BACKTEST_HORIZONS) -> dict:
+        horizons: list[int] = config.BACKTEST_HORIZONS, congress_trades: pd.DataFrame | None = None) -> dict:
     samples = {s: {h: [] for h in horizons} for s in config.SETUPS}
     baseline = {h: [] for h in horizons}
     for ticker, df in prices.items():
@@ -61,6 +73,7 @@ def run(prices: dict[str, pd.DataFrame], trades: pd.DataFrame | None = None,
         events = {"breakout": _events_from_column(ind, "breakout"),
                   "pullback": _events_from_column(ind, "pullback")}
         events.update(_insider_events(ind, ticker, trades))
+        events.update(_congress_events(ind, ticker, congress_trades))
         for setup, idxs in events.items():
             for i in idxs:
                 for h in horizons:
