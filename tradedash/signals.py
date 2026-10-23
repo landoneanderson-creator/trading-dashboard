@@ -32,7 +32,11 @@ def insider_score(ins: pd.Series | None) -> tuple[int, list[str]]:
         score += 10
         reasons.append("CEO/CFO/President among the buyers")
     score += min(10, max(0, round(5 * math.log10(value / config.INSIDER_MIN_TRADE_VALUE))))
-    return min(score, 50), reasons
+    score = min(score, 50)
+    if bool(ins.get("opportunistic", False)):
+        score += 5  # on top of the cap: the best-documented insider edge
+        reasons.append("Bought outside their usual yearly pattern (opportunistic insider)")
+    return score, reasons
 
 
 def congress_score(c: pd.Series | None) -> tuple[int, list[str]]:
@@ -75,11 +79,16 @@ def _by_ticker(summary: pd.DataFrame | None) -> dict:
 
 
 def evaluate(ticker: str, as_of: pd.Timestamp, row: pd.Series, ins: pd.Series | None,
-             con: pd.Series | None, holds: dict[str, int]) -> dict | None:
-    """Score one stock on one day's indicators. Returns the trade idea, or None if no setup."""
+             con: pd.Series | None, holds: dict[str, int], risk_on: bool = True) -> dict | None:
+    """Score one stock on one day's indicators. Returns the trade idea, or None if no setup.
+
+    When risk_on is False (market below its 200-day average), chart-only setups are skipped.
+    """
     if pd.isna(row["atr"]) or row["close"] < config.MIN_PRICE:
         return None
     catalyst = ins is not None or con is not None
+    if not catalyst and not risk_on:
+        return None
     min_liquidity = config.MIN_AVG_DOLLAR_VOLUME / 5 if catalyst else config.MIN_AVG_DOLLAR_VOLUME
     if pd.isna(row["dollar_vol"]) or row["dollar_vol"] < min_liquidity:
         return None
@@ -103,6 +112,8 @@ def evaluate(ticker: str, as_of: pd.Timestamp, row: pd.Series, ins: pd.Series | 
     confirmed = catalyst and (row["uptrend"] or row["close"] > row["sma20"])
     grade = "A" if confirmed and t_score >= 15 else "B"
     hold = holds[setup]
+    if not risk_on:
+        t_reasons.append("Market is below its 200-day average: breakouts are paused, consider a smaller size")
     return {
         "ticker": ticker,
         "grade": grade,
@@ -124,16 +135,29 @@ def rank(ideas: list[dict]) -> list[dict]:
     return sorted(ideas, key=lambda i: (i["grade"], -i["score"]))[: config.MAX_IDEAS]
 
 
+def market_state(prices: dict[str, pd.DataFrame]) -> dict | None:
+    """Today's market regime from the S&P 500 ETF, or None if its prices are missing."""
+    market = prices.get(config.REGIME_TICKER)
+    if market is None or len(market) < config.REGIME_MA:
+        return None
+    close = float(market["close"].iloc[-1])
+    ma = float(indicators.sma(market["close"], config.REGIME_MA).iloc[-1])
+    return {"ticker": config.REGIME_TICKER, "risk_on": close > ma, "close": round(close, 2),
+            "ma": round(ma, 2), "pct_vs_ma": round(close / ma - 1, 4)}
+
+
 def build_ideas(prices: dict[str, pd.DataFrame], insider_summary: pd.DataFrame,
                 congress_summary: pd.DataFrame | None = None) -> pd.DataFrame:
     holds = hold_periods()
     ins_by_ticker = _by_ticker(insider_summary)
     con_by_ticker = _by_ticker(congress_summary)
+    market = market_state(prices)
+    risk_on = market is None or market["risk_on"]
     ideas = []
     for ticker, df in prices.items():
         ind = indicators.add_all(df)
         idea = evaluate(ticker, ind.index[-1], ind.iloc[-1], ins_by_ticker.get(ticker),
-                        con_by_ticker.get(ticker), holds)
+                        con_by_ticker.get(ticker), holds, risk_on)
         if idea:
             ideas.append(idea)
     return pd.DataFrame(rank(ideas)) if ideas else pd.DataFrame()

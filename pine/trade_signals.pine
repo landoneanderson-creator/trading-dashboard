@@ -1,5 +1,6 @@
 //@version=6
 // Same chart rules as the dashboard: uptrend, pullback in uptrend, volume breakout, ATR stop/target.
+// Breakouts and pullbacks are paused while the S&P 500 (SPY) is below its 200-day average.
 // Insider buying can't be computed in Pine, so check the dashboard for that part.
 // Not financial advice.
 indicator("Trade Signal Dashboard: chart signals", overlay = true)
@@ -11,6 +12,7 @@ volRatioMin = input.float(1.5, "Breakout volume x average")
 atrLen      = input.int(14, "ATR length")
 stopAtr     = input.float(2.0, "Stop (ATR multiple)")
 targetAtr   = input.float(4.0, "Target (ATR multiple)")
+useRegime   = input.bool(true, "Pause signals when SPY is below its 200-day average")
 
 sma20  = ta.sma(close, 20)
 sma50  = ta.sma(close, 50)
@@ -21,13 +23,18 @@ a      = ta.atr(atrLen)
 volAvg = ta.sma(volume, 50)
 priorHigh = ta.highest(high, breakoutLen)[1]
 
+spyClose = request.security("SPY", "D", close)
+spyMa    = request.security("SPY", "D", ta.sma(close, 200))
+marketOk = not useRegime or na(spyMa) or spyClose > spyMa
+
 uptrend  = close > sma50 and sma50 > longMa
-pullback = sma50 > longMa and close > longMa and r < pullbackRsi
-breakout = close > priorHigh and volume >= volRatioMin * volAvg and close > sma50
+pullback = marketOk and sma50 > longMa and close > longMa and r < pullbackRsi
+breakout = marketOk and close > priorHigh and volume >= volRatioMin * volAvg and close > sma50
 
 plot(sma50, "SMA 50", color = color.new(color.blue, 0))
 plot(sma200, "SMA 200", color = color.new(color.orange, 0))
 bgcolor(uptrend ? color.new(color.green, 92) : na, title = "Uptrend")
+bgcolor(marketOk ? na : color.new(color.red, 94), title = "Market below 200-day")
 plotshape(breakout, "Breakout", shape.triangleup, location.belowbar, color.green, size = size.small, text = "BO")
 plotshape(pullback and not breakout, "Pullback", shape.circle, location.belowbar, color.teal, size = size.tiny, text = "PB")
 

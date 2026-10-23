@@ -8,12 +8,22 @@ import json
 import pandas as pd
 import requests
 
-from . import backtest, config, congress, dashboard, edgar, news, prices, signals, simulate
+from . import backtest, config, congress, dashboard, edgar, news, patterns, prices, signals, simulate
 
 
 def load_universe() -> list[str]:
     lines = config.UNIVERSE_FILE.read_text().splitlines()
     return [l.strip().upper() for l in lines if l.strip() and not l.startswith("#")]
+
+
+def insider_history(today: dt.date, refresh: bool = True) -> pd.DataFrame:
+    """Past purchases used to spot routine buyers; downloads new quarters when they come out."""
+    if refresh:
+        try:
+            return patterns.update_history(today)
+        except Exception as exc:
+            print(f"::warning::Insider history update failed, using cached history: {exc}")
+    return patterns.load_history()
 
 
 def daily(skip_insider: bool = False) -> None:
@@ -32,6 +42,7 @@ def daily(skip_insider: bool = False) -> None:
             ctrades = congress.update_cache(today)
         except Exception as exc:
             print(f"::warning::House disclosures update failed, using cached congress data: {exc}")
+    trades = patterns.tag(trades, insider_history(today, refresh=not skip_insider))
     summary = edgar.summarize(trades, today)
     csummary = congress.summarize(ctrades, today)
     tickers = list(dict.fromkeys(load_universe() + summary["ticker"].tolist() + csummary["ticker"].tolist()))
@@ -39,19 +50,20 @@ def daily(skip_insider: bool = False) -> None:
           f"{len(csummary)} with congressional buying)")
     history = prices.get_many(tickers)
     ideas = signals.build_ideas(history, summary, csummary)
+    market = signals.market_state(history)
 
     session = requests.Session()
     headlines = {t: news.headlines(t, session=session) for t in ideas.get("ticker", [])}
     report_file = config.DATA_DIR / "backtest_report.json"
     report = json.loads(report_file.read_text()) if report_file.exists() else None
     sim = json.loads(simulate.RESULTS_FILE.read_text()) if simulate.RESULTS_FILE.exists() else None
-    dashboard.write(dashboard.render(ideas, headlines, report, simulation=sim))
+    dashboard.write(dashboard.render(ideas, headlines, report, simulation=sim, market=market))
     (config.DOCS_DIR / "ideas.json").write_text(ideas.to_json(orient="records", indent=2))
     print(f"[daily] wrote {len(ideas)} ideas")
 
 
 def run_backtest() -> None:
-    trades = edgar.load_trades()
+    trades = patterns.tag(edgar.load_trades(), insider_history(dt.date.today()))
     ctrades = congress.load_trades()
     extra = trades["ticker"].dropna().unique().tolist() + ctrades["ticker"].dropna().unique().tolist()
     tickers = list(dict.fromkeys(load_universe() + extra))
@@ -63,7 +75,7 @@ def run_backtest() -> None:
 
 def run_simulation() -> None:
     today = dt.date.today()
-    insider = simulate.load_history(today)
+    insider = patterns.tag(simulate.load_history(today), insider_history(today))
     usable = edgar.summarize(insider, today, lookback_days=10_000)  # same filters the dashboard applies
     ctrades = congress.load_trades()
     tickers = list(dict.fromkeys(["SPY"] + load_universe() + usable["ticker"].tolist()
