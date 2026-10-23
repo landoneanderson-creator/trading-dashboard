@@ -1,0 +1,54 @@
+[
+  {
+    "variant": "top ideas",
+    "start": "2024-10-23",
+    "end": "2026-10-23",
+    "total_return": 0.3841,
+    "annual_return": 0.1766,
+    "max_drawdown": -0.1504,
+    "benchmark_return": 0.3452,
+    "benchmark_annual": 0.1599,
+    "benchmark_max_drawdown": -0.1876,
+    "overall": {
+      "trades": 584,
+      "win_rate": 0.455,
+      "avg_return": 0.0063,
+      "avg_days": 8.1
+    },
+    "by_setup": {
+      "breakout": {
+        "trades": 295,
+        "win_rate": 0.502,
+        "avg_return": 0.0071,
+        "avg_days": 7.9
+      },
+      "pullback": {
+        "trades": 289,
+        "win_rate": 0.408,
+        "avg_return": 0.0054,
+        "avg_days": 8.3
+      }
+    },
+    "exits": {
+      "stop": 239,
+      "time": 223,
+      "target": 122
+    }
+  },
+  {
+    "variant": "grade A only",
+    "start": "2024-10-23",
+    "end": "2026-10-23",
+    "total_return": 0.0,
+    "annual_return": 0.0,
+    "max_drawdown": 0.0,
+    "benchmark_return": 0.3452,
+    "benchmark_annual": 0.1599,
+    "benchmark_max_drawdown": -0.1876,
+    "overall": {
+      "trades": 0
+    },
+    "by_setup": {},
+    "exits": {}
+  }
+]
