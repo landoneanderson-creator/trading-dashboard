@@ -3,77 +3,77 @@
     "variant": "top ideas",
     "start": "2024-10-01",
     "end": "2026-10-23",
-    "total_return": 0.6474,
-    "annual_return": 0.2744,
-    "max_drawdown": -0.1843,
+    "total_return": 0.5475,
+    "annual_return": 0.2362,
+    "max_drawdown": -0.1837,
     "benchmark_return": 0.3674,
     "benchmark_annual": 0.1641,
     "benchmark_max_drawdown": -0.1876,
     "overall": {
-      "trades": 235,
-      "win_rate": 0.477,
-      "avg_return": 0.0243,
-      "avg_days": 20.9
+      "trades": 193,
+      "win_rate": 0.451,
+      "avg_return": 0.025,
+      "avg_days": 25.7
     },
     "by_setup": {
       "breakout": {
-        "trades": 55,
-        "win_rate": 0.473,
-        "avg_return": 0.002,
-        "avg_days": 7.5
+        "trades": 9,
+        "win_rate": 0.333,
+        "avg_return": -0.014,
+        "avg_days": 14.1
       },
       "insider_buy": {
-        "trades": 63,
-        "win_rate": 0.556,
-        "avg_return": 0.0418,
-        "avg_days": 22.6
+        "trades": 50,
+        "win_rate": 0.56,
+        "avg_return": 0.0323,
+        "avg_days": 20.5
       },
       "insider_cluster": {
-        "trades": 117,
-        "win_rate": 0.436,
-        "avg_return": 0.0253,
-        "avg_days": 26.4
+        "trades": 134,
+        "win_rate": 0.418,
+        "avg_return": 0.0248,
+        "avg_days": 28.4
       }
     },
     "exits": {
-      "stop": 110,
-      "target": 72,
-      "time": 53
+      "stop": 93,
+      "target": 71,
+      "time": 29
     }
   },
   {
     "variant": "grade A only",
     "start": "2024-10-01",
     "end": "2026-10-23",
-    "total_return": 0.1913,
-    "annual_return": 0.0887,
-    "max_drawdown": -0.1787,
+    "total_return": 0.2219,
+    "annual_return": 0.1022,
+    "max_drawdown": -0.1767,
     "benchmark_return": 0.3674,
     "benchmark_annual": 0.1641,
     "benchmark_max_drawdown": -0.1876,
     "overall": {
-      "trades": 178,
-      "win_rate": 0.427,
-      "avg_return": 0.0119,
-      "avg_days": 25.0
+      "trades": 184,
+      "win_rate": 0.435,
+      "avg_return": 0.0127,
+      "avg_days": 26.7
     },
     "by_setup": {
       "insider_buy": {
-        "trades": 67,
-        "win_rate": 0.478,
-        "avg_return": 0.0163,
-        "avg_days": 21.8
+        "trades": 54,
+        "win_rate": 0.481,
+        "avg_return": 0.0191,
+        "avg_days": 21.1
       },
       "insider_cluster": {
-        "trades": 111,
-        "win_rate": 0.396,
-        "avg_return": 0.0092,
-        "avg_days": 27.0
+        "trades": 130,
+        "win_rate": 0.415,
+        "avg_return": 0.01,
+        "avg_days": 29.0
       }
     },
     "exits": {
-      "stop": 93,
-      "target": 59,
+      "stop": 95,
+      "target": 63,
       "time": 26
     }
   }
