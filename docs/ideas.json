@@ -106,6 +106,24 @@
     ]
   },
   {
+    "ticker":"BHRB",
+    "grade":"A",
+    "score":34,
+    "setup":"insider_buy",
+    "as_of":"2026-10-30",
+    "entry":70.48,
+    "stop":66.61,
+    "target":76.67,
+    "hold_days":40,
+    "exit_by":"2026-12-25",
+    "rsi":52.3,
+    "reasons":[
+      "Insider bought $35,500 (McLaughlin Shawn Patrick)",
+      "Bought outside their usual yearly pattern (opportunistic insider)",
+      "Uptrend: price above rising 50\/200-day averages"
+    ]
+  },
+  {
     "ticker":"CLF",
     "grade":"A",
     "score":31,
@@ -119,6 +137,23 @@
     "rsi":61.1,
     "reasons":[
       "Insider bought $99,826 (Camara Edilson)",
+      "Uptrend: price above rising 50\/200-day averages"
+    ]
+  },
+  {
+    "ticker":"MED",
+    "grade":"A",
+    "score":30,
+    "setup":"insider_buy",
+    "as_of":"2026-10-30",
+    "entry":12.15,
+    "stop":11.03,
+    "target":13.94,
+    "hold_days":40,
+    "exit_by":"2026-12-25",
+    "rsi":54.3,
+    "reasons":[
+      "Insider bought $66,093 (Kiai Parsa)",
       "Uptrend: price above rising 50\/200-day averages"
     ]
   },
@@ -208,6 +243,23 @@
     ]
   },
   {
+    "ticker":"RAPP",
+    "grade":"B",
+    "score":50,
+    "setup":"insider_cluster",
+    "as_of":"2026-10-30",
+    "entry":25.05,
+    "stop":18.35,
+    "target":38.46,
+    "hold_days":60,
+    "exit_by":"2027-01-22",
+    "rsi":37.5,
+    "reasons":[
+      "7 insiders bought $22,023,904 in the last 30 days",
+      "CEO\/CFO\/President among the buyers"
+    ]
+  },
+  {
     "ticker":"APLD",
     "grade":"B",
     "score":50,
@@ -221,23 +273,6 @@
     "rsi":36.6,
     "reasons":[
       "2 insiders bought $6,664,686 in the last 30 days",
-      "CEO\/CFO\/President among the buyers"
-    ]
-  },
-  {
-    "ticker":"RAPP",
-    "grade":"B",
-    "score":50,
-    "setup":"insider_cluster",
-    "as_of":"2026-10-30",
-    "entry":25.05,
-    "stop":18.35,
-    "target":38.46,
-    "hold_days":60,
-    "exit_by":"2027-01-22",
-    "rsi":37.5,
-    "reasons":[
-      "6 insiders bought $1,664,824 in the last 30 days",
       "CEO\/CFO\/President among the buyers"
     ]
   },
@@ -317,8 +352,8 @@
     "entry":170.68,
     "stop":161.72,
     "target":188.59,
-    "hold_days":20,
-    "exit_by":"2026-11-27",
+    "hold_days":60,
+    "exit_by":"2027-01-22",
     "rsi":74.4,
     "reasons":[
       "Uptrend: price above rising 50\/200-day averages",
@@ -334,8 +369,8 @@
     "entry":558.88,
     "stop":528.59,
     "target":619.45,
-    "hold_days":20,
-    "exit_by":"2026-11-27",
+    "hold_days":60,
+    "exit_by":"2027-01-22",
     "rsi":67.7,
     "reasons":[
       "Uptrend: price above rising 50\/200-day averages",
@@ -351,8 +386,8 @@
     "entry":187.25,
     "stop":179.31,
     "target":203.12,
-    "hold_days":20,
-    "exit_by":"2026-11-27",
+    "hold_days":60,
+    "exit_by":"2027-01-22",
     "rsi":73.0,
     "reasons":[
       "Uptrend: price above rising 50\/200-day averages",
@@ -368,8 +403,8 @@
     "entry":313.28,
     "stop":298.71,
     "target":342.41,
-    "hold_days":20,
-    "exit_by":"2026-11-27",
+    "hold_days":60,
+    "exit_by":"2027-01-22",
     "rsi":65.5,
     "reasons":[
       "Uptrend: price above rising 50\/200-day averages",
@@ -390,40 +425,6 @@
     "rsi":45.5,
     "reasons":[
       "2 insiders bought $29,026,958 in the last 30 days"
-    ]
-  },
-  {
-    "ticker":"LRN",
-    "grade":"B",
-    "score":40,
-    "setup":"insider_cluster",
-    "as_of":"2026-10-30",
-    "entry":78.36,
-    "stop":71.55,
-    "target":91.98,
-    "hold_days":60,
-    "exit_by":"2027-01-22",
-    "rsi":44.6,
-    "reasons":[
-      "2 insiders bought $12,240,310 in the last 30 days"
-    ]
-  },
-  {
-    "ticker":"UTMD",
-    "grade":"B",
-    "score":40,
-    "setup":"insider_buy",
-    "as_of":"2026-10-30",
-    "entry":68.08,
-    "stop":64.31,
-    "target":74.11,
-    "hold_days":40,
-    "exit_by":"2026-12-25",
-    "rsi":30.3,
-    "reasons":[
-      "Insider bought $66,750 (CORNWELL KEVIN L)",
-      "CEO\/CFO\/President among the buyers",
-      "Pullback in uptrend, RSI 30"
     ]
   }
 ]

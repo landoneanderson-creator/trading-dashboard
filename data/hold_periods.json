@@ -1,18 +1,18 @@
 {
   "breakout": {
-    "best_horizon": 20,
-    "horizon": 20,
-    "n": 1136,
-    "avg_return": 0.0124,
-    "win_rate": 0.478,
-    "edge_vs_baseline": 0.0015
+    "best_horizon": 60,
+    "horizon": 60,
+    "n": 1387,
+    "avg_return": 0.0285,
+    "win_rate": 0.498,
+    "edge_vs_baseline": 0.0049
   },
   "pullback": {
     "best_horizon": 20,
     "horizon": 20,
-    "n": 774,
-    "avg_return": 0.0186,
-    "win_rate": 0.547,
-    "edge_vs_baseline": 0.0077
+    "n": 1014,
+    "avg_return": 0.0161,
+    "win_rate": 0.544,
+    "edge_vs_baseline": 0.0092
   }
 }
