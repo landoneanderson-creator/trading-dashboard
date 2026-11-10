@@ -4,15 +4,69 @@
     "grade":"A",
     "score":70,
     "setup":"insider_cluster",
-    "as_of":"2026-11-06",
-    "entry":260.5,
-    "stop":233.97,
-    "target":313.55,
+    "as_of":"2026-11-09",
+    "entry":254.37,
+    "stop":228.26,
+    "target":306.58,
     "hold_days":60,
-    "exit_by":"2027-01-29",
-    "rsi":66.3,
+    "exit_by":"2027-02-01",
+    "rsi":61.5,
     "reasons":[
       "2 insiders bought $3,200,889 in the last 30 days",
+      "CEO\/CFO\/President among the buyers",
+      "Uptrend: price above rising 50\/200-day averages"
+    ]
+  },
+  {
+    "ticker":"STRZ",
+    "grade":"A",
+    "score":64,
+    "setup":"insider_cluster",
+    "as_of":"2026-11-09",
+    "entry":26.02,
+    "stop":20.79,
+    "target":36.48,
+    "hold_days":60,
+    "exit_by":"2027-02-01",
+    "rsi":59.8,
+    "reasons":[
+      "2 insiders bought $166,200 in the last 30 days",
+      "CEO\/CFO\/President among the buyers",
+      "Uptrend: price above rising 50\/200-day averages"
+    ]
+  },
+  {
+    "ticker":"CMCO",
+    "grade":"A",
+    "score":57,
+    "setup":"insider_buy",
+    "as_of":"2026-11-09",
+    "entry":19.67,
+    "stop":16.72,
+    "target":24.38,
+    "hold_days":40,
+    "exit_by":"2027-01-04",
+    "rsi":67.4,
+    "reasons":[
+      "Insider bought $546,269 (Wilson David J.)",
+      "CEO\/CFO\/President among the buyers",
+      "Breakout to a 20-day high on 2.1x volume"
+    ]
+  },
+  {
+    "ticker":"GME",
+    "grade":"A",
+    "score":55,
+    "setup":"insider_buy",
+    "as_of":"2026-11-09",
+    "entry":25.59,
+    "stop":22.87,
+    "target":29.95,
+    "hold_days":40,
+    "exit_by":"2027-01-04",
+    "rsi":56.8,
+    "reasons":[
+      "Insider bought $22,774,728 (Cohen Ryan)",
       "CEO\/CFO\/President among the buyers",
       "Uptrend: price above rising 50\/200-day averages"
     ]
@@ -22,13 +76,13 @@
     "grade":"A",
     "score":52,
     "setup":"insider_buy",
-    "as_of":"2026-11-06",
-    "entry":17.53,
-    "stop":16.51,
-    "target":19.17,
+    "as_of":"2026-11-09",
+    "entry":17.66,
+    "stop":16.66,
+    "target":19.25,
     "hold_days":40,
-    "exit_by":"2027-01-01",
-    "rsi":56.9,
+    "exit_by":"2027-01-04",
+    "rsi":59.1,
     "reasons":[
       "Insider bought $502,303 (Barnes Michael Gene)",
       "CEO\/CFO\/President among the buyers",
@@ -36,37 +90,37 @@
     ]
   },
   {
-    "ticker":"GME",
+    "ticker":"TRNS",
     "grade":"A",
     "score":50,
     "setup":"insider_buy",
-    "as_of":"2026-11-06",
-    "entry":25.12,
-    "stop":22.46,
-    "target":29.38,
+    "as_of":"2026-11-09",
+    "entry":109.56,
+    "stop":96.2,
+    "target":130.93,
     "hold_days":40,
-    "exit_by":"2027-01-01",
-    "rsi":53.9,
+    "exit_by":"2027-01-04",
+    "rsi":69.9,
     "reasons":[
-      "Insider bought $22,774,728 (Cohen Ryan)",
+      "Insider bought $230,366 (IRICK JAIME A)",
       "CEO\/CFO\/President among the buyers",
       "Uptrend: price above rising 50\/200-day averages"
     ]
   },
   {
-    "ticker":"IIPR",
+    "ticker":"KOD",
     "grade":"A",
-    "score":43,
+    "score":45,
     "setup":"insider_buy",
-    "as_of":"2026-11-05",
-    "entry":55.3,
-    "stop":51.36,
-    "target":61.61,
+    "as_of":"2026-11-09",
+    "entry":107.1,
+    "stop":90.09,
+    "target":134.32,
     "hold_days":40,
-    "exit_by":"2026-12-31",
-    "rsi":58.1,
+    "exit_by":"2027-01-04",
+    "rsi":67.0,
     "reasons":[
-      "Insider bought $1,000,000 (Gold Alan D)",
+      "Insider bought $24,340,836 (BAKER BROS. ADVISORS LP; 667, L.P.; Baker Bros. Advisors (GP) LLC; Baker Brothers Life Sciences LP; BAKER FELIX; BAKER JULIAN)",
       "Uptrend: price above rising 50\/200-day averages"
     ]
   },
@@ -75,13 +129,13 @@
     "grade":"A",
     "score":43,
     "setup":"insider_buy",
-    "as_of":"2026-11-06",
-    "entry":100.64,
-    "stop":93.99,
-    "target":111.28,
+    "as_of":"2026-11-09",
+    "entry":102.91,
+    "stop":96.07,
+    "target":113.85,
     "hold_days":40,
-    "exit_by":"2027-01-01",
-    "rsi":56.1,
+    "exit_by":"2027-01-04",
+    "rsi":61.8,
     "reasons":[
       "Insider bought $991,600 (INGRAM DAVID B)",
       "Uptrend: price above rising 50\/200-day averages"
@@ -92,15 +146,33 @@
     "grade":"A",
     "score":43,
     "setup":"insider_buy",
-    "as_of":"2026-11-05",
-    "entry":6.84,
-    "stop":6.22,
-    "target":7.84,
+    "as_of":"2026-11-09",
+    "entry":6.56,
+    "stop":5.96,
+    "target":7.53,
     "hold_days":40,
-    "exit_by":"2026-12-31",
-    "rsi":67.6,
+    "exit_by":"2027-01-04",
+    "rsi":56.4,
     "reasons":[
       "Insider bought $850,500 (WARD JR STEPHEN M)",
+      "Uptrend: price above rising 50\/200-day averages"
+    ]
+  },
+  {
+    "ticker":"UTMD",
+    "grade":"A",
+    "score":40,
+    "setup":"insider_buy",
+    "as_of":"2026-11-09",
+    "entry":72.87,
+    "stop":68.42,
+    "target":80.0,
+    "hold_days":40,
+    "exit_by":"2027-01-04",
+    "rsi":51.9,
+    "reasons":[
+      "Insider bought $66,750 (CORNWELL KEVIN L)",
+      "CEO\/CFO\/President among the buyers",
       "Uptrend: price above rising 50\/200-day averages"
     ]
   },
@@ -109,15 +181,33 @@
     "grade":"A",
     "score":39,
     "setup":"insider_buy",
-    "as_of":"2026-11-05",
-    "entry":12.06,
-    "stop":9.63,
-    "target":15.94,
+    "as_of":"2026-11-09",
+    "entry":12.96,
+    "stop":10.62,
+    "target":16.71,
     "hold_days":40,
-    "exit_by":"2026-12-31",
-    "rsi":63.8,
+    "exit_by":"2027-01-04",
+    "rsi":67.4,
     "reasons":[
       "Insider bought $127,910 (HAWKINS JAMES B)",
+      "Uptrend: price above rising 50\/200-day averages"
+    ]
+  },
+  {
+    "ticker":"BHRB",
+    "grade":"A",
+    "score":34,
+    "setup":"insider_buy",
+    "as_of":"2026-11-09",
+    "entry":70.68,
+    "stop":65.84,
+    "target":78.42,
+    "hold_days":40,
+    "exit_by":"2027-01-04",
+    "rsi":51.6,
+    "reasons":[
+      "Insider bought $35,500 (McLaughlin Shawn Patrick)",
+      "Bought outside their usual yearly pattern (opportunistic insider)",
       "Uptrend: price above rising 50\/200-day averages"
     ]
   },
@@ -126,15 +216,66 @@
     "grade":"A",
     "score":30,
     "setup":"insider_buy",
-    "as_of":"2026-11-06",
-    "entry":12.81,
-    "stop":11.67,
-    "target":14.64,
+    "as_of":"2026-11-09",
+    "entry":13.37,
+    "stop":12.16,
+    "target":15.3,
     "hold_days":40,
-    "exit_by":"2027-01-01",
-    "rsi":61.4,
+    "exit_by":"2027-01-04",
+    "rsi":68.3,
     "reasons":[
       "Insider bought $66,093 (Kiai Parsa)",
+      "Uptrend: price above rising 50\/200-day averages"
+    ]
+  },
+  {
+    "ticker":"FISI",
+    "grade":"A",
+    "score":30,
+    "setup":"insider_buy",
+    "as_of":"2026-11-09",
+    "entry":40.22,
+    "stop":37.64,
+    "target":44.35,
+    "hold_days":40,
+    "exit_by":"2027-01-04",
+    "rsi":52.2,
+    "reasons":[
+      "Insider bought $63,173 (DORN ANDREW W JR)",
+      "Uptrend: price above rising 50\/200-day averages"
+    ]
+  },
+  {
+    "ticker":"BFC",
+    "grade":"A",
+    "score":30,
+    "setup":"insider_buy",
+    "as_of":"2026-11-09",
+    "entry":150.57,
+    "stop":140.17,
+    "target":167.2,
+    "hold_days":40,
+    "exit_by":"2027-01-04",
+    "rsi":54.0,
+    "reasons":[
+      "Insider bought $59,348 (Sprang Todd A.)",
+      "Uptrend: price above rising 50\/200-day averages"
+    ]
+  },
+  {
+    "ticker":"EAF",
+    "grade":"A",
+    "score":30,
+    "setup":"insider_buy",
+    "as_of":"2026-11-09",
+    "entry":10.62,
+    "stop":8.11,
+    "target":14.63,
+    "hold_days":40,
+    "exit_by":"2027-01-04",
+    "rsi":55.8,
+    "reasons":[
+      "Insider bought $50,000 (Shivaram Sachin M)",
       "Uptrend: price above rising 50\/200-day averages"
     ]
   },
@@ -143,13 +284,13 @@
     "grade":"A",
     "score":29,
     "setup":"insider_buy",
-    "as_of":"2026-11-06",
-    "entry":19.13,
-    "stop":18.19,
-    "target":20.63,
+    "as_of":"2026-11-09",
+    "entry":19.35,
+    "stop":18.42,
+    "target":20.83,
     "hold_days":40,
-    "exit_by":"2027-01-01",
-    "rsi":53.3,
+    "exit_by":"2027-01-04",
+    "rsi":56.9,
     "reasons":[
       "Insider bought $46,150 (HENSON MARY BETH)",
       "Uptrend: price above rising 50\/200-day averages"
@@ -160,13 +301,13 @@
     "grade":"A",
     "score":29,
     "setup":"insider_buy",
-    "as_of":"2026-11-05",
-    "entry":38.04,
-    "stop":35.89,
-    "target":41.49,
+    "as_of":"2026-11-09",
+    "entry":38.82,
+    "stop":36.66,
+    "target":42.27,
     "hold_days":40,
-    "exit_by":"2026-12-31",
-    "rsi":51.4,
+    "exit_by":"2027-01-04",
+    "rsi":58.2,
     "reasons":[
       "Insider bought $44,785 (Stewart Pamela C)",
       "Uptrend: price above rising 50\/200-day averages"
@@ -177,13 +318,13 @@
     "grade":"A",
     "score":29,
     "setup":"insider_buy",
-    "as_of":"2026-11-06",
-    "entry":8.74,
-    "stop":7.28,
-    "target":11.08,
+    "as_of":"2026-11-09",
+    "entry":9.22,
+    "stop":7.76,
+    "target":11.56,
     "hold_days":40,
-    "exit_by":"2027-01-01",
-    "rsi":50.7,
+    "exit_by":"2027-01-04",
+    "rsi":55.1,
     "reasons":[
       "Insider bought $40,900 (Chaikof David)",
       "Uptrend: price above rising 50\/200-day averages"
@@ -194,33 +335,50 @@
     "grade":"A",
     "score":29,
     "setup":"insider_buy",
-    "as_of":"2026-11-06",
-    "entry":32.62,
-    "stop":30.87,
-    "target":35.43,
+    "as_of":"2026-11-09",
+    "entry":32.39,
+    "stop":30.63,
+    "target":35.21,
     "hold_days":40,
-    "exit_by":"2027-01-01",
-    "rsi":62.1,
+    "exit_by":"2027-01-04",
+    "rsi":58.9,
     "reasons":[
       "Insider bought $40,000 (Velazquez David M)",
       "Uptrend: price above rising 50\/200-day averages"
     ]
   },
   {
-    "ticker":"MSM",
-    "grade":"B",
-    "score":60,
-    "setup":"insider_cluster",
-    "as_of":"2026-11-06",
-    "entry":113.27,
-    "stop":102.21,
-    "target":135.39,
-    "hold_days":60,
-    "exit_by":"2027-01-29",
-    "rsi":38.2,
+    "ticker":"NTRS",
+    "grade":"A",
+    "score":29,
+    "setup":"insider_buy",
+    "as_of":"2026-11-09",
+    "entry":177.65,
+    "stop":166.33,
+    "target":195.77,
+    "hold_days":40,
+    "exit_by":"2027-01-04",
+    "rsi":59.5,
     "reasons":[
-      "2 insiders bought $29,026,958 in the last 30 days",
-      "Pullback in uptrend, RSI 38"
+      "Insider bought $39,901 (Moritz Robert Edward Jr.)",
+      "Uptrend: price above rising 50\/200-day averages"
+    ]
+  },
+  {
+    "ticker":"RNST",
+    "grade":"A",
+    "score":26,
+    "setup":"insider_buy",
+    "as_of":"2026-11-09",
+    "entry":40.14,
+    "stop":37.18,
+    "target":44.87,
+    "hold_days":40,
+    "exit_by":"2027-01-04",
+    "rsi":49.6,
+    "reasons":[
+      "Insider bought $82,120 (LEVY JONATHAN A)",
+      "Uptrend: price above rising 50\/200-day averages"
     ]
   },
   {
@@ -228,18 +386,18 @@
     "grade":"B",
     "score":58,
     "setup":"insider_buy",
-    "as_of":"2026-11-06",
-    "entry":97.18,
-    "stop":82.8,
-    "target":120.19,
+    "as_of":"2026-11-09",
+    "entry":99.76,
+    "stop":85.64,
+    "target":122.36,
     "hold_days":40,
-    "exit_by":"2027-01-01",
-    "rsi":29.5,
+    "exit_by":"2027-01-04",
+    "rsi":34.0,
     "reasons":[
       "Insider bought $1,108,000 (MYERS FRANKLIN)",
       "CEO\/CFO\/President among the buyers",
       "Bought outside their usual yearly pattern (opportunistic insider)",
-      "Pullback in uptrend, RSI 30"
+      "Pullback in uptrend, RSI 34"
     ]
   },
   {
@@ -247,13 +405,13 @@
     "grade":"B",
     "score":55,
     "setup":"insider_cluster",
-    "as_of":"2026-11-05",
-    "entry":15.88,
-    "stop":14.42,
-    "target":18.8,
+    "as_of":"2026-11-09",
+    "entry":15.9,
+    "stop":14.5,
+    "target":18.69,
     "hold_days":60,
-    "exit_by":"2027-01-28",
-    "rsi":51.4,
+    "exit_by":"2027-02-01",
+    "rsi":51.7,
     "reasons":[
       "4 insiders bought $1,819,349 in the last 30 days",
       "CEO\/CFO\/President among the buyers"
@@ -264,170 +422,15 @@
     "grade":"B",
     "score":55,
     "setup":"insider_cluster",
-    "as_of":"2026-11-06",
-    "entry":184.0,
-    "stop":164.47,
-    "target":223.07,
+    "as_of":"2026-11-09",
+    "entry":186.06,
+    "stop":167.02,
+    "target":224.14,
     "hold_days":60,
-    "exit_by":"2027-01-29",
-    "rsi":60.8,
+    "exit_by":"2027-02-01",
+    "rsi":62.2,
     "reasons":[
-      "3 insiders bought $1,431,864 in the last 30 days",
-      "CEO\/CFO\/President among the buyers"
-    ]
-  },
-  {
-    "ticker":"UPBD",
-    "grade":"B",
-    "score":55,
-    "setup":"insider_cluster",
-    "as_of":"2026-11-06",
-    "entry":24.24,
-    "stop":21.67,
-    "target":29.37,
-    "hold_days":60,
-    "exit_by":"2027-01-29",
-    "rsi":79.7,
-    "reasons":[
-      "7 insiders bought $1,343,739 in the last 30 days",
-      "CEO\/CFO\/President among the buyers",
-      "Bought outside their usual yearly pattern (opportunistic insider)",
-      "Overbought, RSI 80: consider waiting for a dip"
-    ]
-  },
-  {
-    "ticker":"BXMT",
-    "grade":"B",
-    "score":53,
-    "setup":"insider_cluster",
-    "as_of":"2026-11-06",
-    "entry":11.16,
-    "stop":10.06,
-    "target":13.35,
-    "hold_days":60,
-    "exit_by":"2027-01-29",
-    "rsi":49.5,
-    "reasons":[
-      "2 insiders bought $1,149,642 in the last 30 days",
-      "CEO\/CFO\/President among the buyers"
-    ]
-  },
-  {
-    "ticker":"PAM",
-    "grade":"B",
-    "score":50,
-    "setup":"insider_cluster",
-    "as_of":"2026-11-06",
-    "entry":63.58,
-    "stop":56.91,
-    "target":76.91,
-    "hold_days":60,
-    "exit_by":"2027-01-29",
-    "rsi":16.9,
-    "reasons":[
-      "3 insiders bought $37,962,719 in the last 30 days",
-      "CEO\/CFO\/President among the buyers"
-    ]
-  },
-  {
-    "ticker":"RAPP",
-    "grade":"B",
-    "score":50,
-    "setup":"insider_cluster",
-    "as_of":"2026-11-05",
-    "entry":23.72,
-    "stop":17.73,
-    "target":35.7,
-    "hold_days":60,
-    "exit_by":"2027-01-28",
-    "rsi":35.7,
-    "reasons":[
-      "7 insiders bought $22,023,904 in the last 30 days",
-      "CEO\/CFO\/President among the buyers"
-    ]
-  },
-  {
-    "ticker":"APLD",
-    "grade":"B",
-    "score":50,
-    "setup":"insider_cluster",
-    "as_of":"2026-11-05",
-    "entry":14.17,
-    "stop":9.45,
-    "target":23.61,
-    "hold_days":60,
-    "exit_by":"2027-01-28",
-    "rsi":31.4,
-    "reasons":[
-      "2 insiders bought $6,664,686 in the last 30 days",
-      "CEO\/CFO\/President among the buyers"
-    ]
-  },
-  {
-    "ticker":"LBRT",
-    "grade":"B",
-    "score":50,
-    "setup":"insider_cluster",
-    "as_of":"2026-11-05",
-    "entry":11.35,
-    "stop":8.31,
-    "target":17.43,
-    "hold_days":60,
-    "exit_by":"2027-01-28",
-    "rsi":23.1,
-    "reasons":[
-      "3 insiders bought $645,635 in the last 30 days",
-      "CEO\/CFO\/President among the buyers"
-    ]
-  },
-  {
-    "ticker":"STC",
-    "grade":"B",
-    "score":50,
-    "setup":"insider_cluster",
-    "as_of":"2026-11-06",
-    "entry":47.0,
-    "stop":41.36,
-    "target":58.27,
-    "hold_days":60,
-    "exit_by":"2027-01-29",
-    "rsi":42.3,
-    "reasons":[
-      "5 insiders bought $460,970 in the last 30 days",
-      "CEO\/CFO\/President among the buyers"
-    ]
-  },
-  {
-    "ticker":"OCFC",
-    "grade":"B",
-    "score":50,
-    "setup":"insider_cluster",
-    "as_of":"2026-11-06",
-    "entry":18.13,
-    "stop":16.8,
-    "target":20.78,
-    "hold_days":60,
-    "exit_by":"2027-01-29",
-    "rsi":58.5,
-    "reasons":[
-      "2 insiders bought $267,777 in the last 30 days",
-      "CEO\/CFO\/President among the buyers"
-    ]
-  },
-  {
-    "ticker":"TTMI",
-    "grade":"B",
-    "score":49,
-    "setup":"insider_cluster",
-    "as_of":"2026-11-06",
-    "entry":66.51,
-    "stop":43.57,
-    "target":112.39,
-    "hold_days":60,
-    "exit_by":"2027-01-29",
-    "rsi":33.6,
-    "reasons":[
-      "2 insiders bought $1,974,352 in the last 30 days",
+      "4 insiders bought $1,729,868 in the last 30 days",
       "CEO\/CFO\/President among the buyers"
     ]
   }
