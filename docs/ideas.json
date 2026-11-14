@@ -8,8 +8,8 @@
     "entry":7.25,
     "stop":6.04,
     "target":9.67,
-    "hold_days":60,
-    "exit_by":"2027-02-05",
+    "hold_days":5,
+    "exit_by":"2026-11-20",
     "rsi":72.1,
     "reasons":[
       "3 insiders bought $225,000 in the last 30 days",
@@ -26,8 +26,8 @@
     "entry":250.49,
     "stop":226.28,
     "target":298.91,
-    "hold_days":60,
-    "exit_by":"2027-02-05",
+    "hold_days":5,
+    "exit_by":"2026-11-20",
     "rsi":57.2,
     "reasons":[
       "2 insiders bought $3,200,889 in the last 30 days",
@@ -44,8 +44,8 @@
     "entry":8.21,
     "stop":6.81,
     "target":11.02,
-    "hold_days":60,
-    "exit_by":"2027-02-05",
+    "hold_days":5,
+    "exit_by":"2026-11-20",
     "rsi":59.2,
     "reasons":[
       "2 insiders bought $278,388 in the last 30 days",
@@ -62,8 +62,8 @@
     "entry":34.44,
     "stop":32.18,
     "target":38.96,
-    "hold_days":60,
-    "exit_by":"2027-02-05",
+    "hold_days":5,
+    "exit_by":"2026-11-20",
     "rsi":69.8,
     "reasons":[
       "2 insiders bought $199,429 in the last 30 days",
@@ -80,8 +80,8 @@
     "entry":25.88,
     "stop":20.98,
     "target":35.67,
-    "hold_days":60,
-    "exit_by":"2027-02-05",
+    "hold_days":5,
+    "exit_by":"2026-11-20",
     "rsi":57.5,
     "reasons":[
       "2 insiders bought $166,200 in the last 30 days",
@@ -157,6 +157,24 @@
     "rsi":61.4,
     "reasons":[
       "Insider bought $230,366 (IRICK JAIME A)",
+      "CEO\/CFO\/President among the buyers",
+      "Uptrend: price above rising 50\/200-day averages"
+    ]
+  },
+  {
+    "ticker":"CTEV",
+    "grade":"A",
+    "score":49,
+    "setup":"insider_buy",
+    "as_of":"2026-11-13",
+    "entry":26.82,
+    "stop":20.64,
+    "target":36.71,
+    "hold_days":40,
+    "exit_by":"2027-01-08",
+    "rsi":56.9,
+    "reasons":[
+      "Insider bought $149,927 (Dalton Travis)",
       "CEO\/CFO\/President among the buyers",
       "Uptrend: price above rising 50\/200-day averages"
     ]
@@ -336,6 +354,24 @@
     ]
   },
   {
+    "ticker":"GAM",
+    "grade":"A",
+    "score":35,
+    "setup":"insider_buy",
+    "as_of":"2026-11-13",
+    "entry":65.36,
+    "stop":62.22,
+    "target":70.39,
+    "hold_days":40,
+    "exit_by":"2027-01-08",
+    "rsi":54.7,
+    "reasons":[
+      "Insider bought $66,000 (Stark Eugene S)",
+      "Bought outside their usual yearly pattern (opportunistic insider)",
+      "Uptrend: price above rising 50\/200-day averages"
+    ]
+  },
+  {
     "ticker":"AMH",
     "grade":"A",
     "score":34,
@@ -403,40 +439,6 @@
     "rsi":58.6,
     "reasons":[
       "Insider bought $66,093 (Kiai Parsa)",
-      "Uptrend: price above rising 50\/200-day averages"
-    ]
-  },
-  {
-    "ticker":"FISI",
-    "grade":"A",
-    "score":30,
-    "setup":"insider_buy",
-    "as_of":"2026-11-13",
-    "entry":40.18,
-    "stop":37.86,
-    "target":43.89,
-    "hold_days":40,
-    "exit_by":"2027-01-08",
-    "rsi":52.1,
-    "reasons":[
-      "Insider bought $63,173 (DORN ANDREW W JR)",
-      "Uptrend: price above rising 50\/200-day averages"
-    ]
-  },
-  {
-    "ticker":"BFC",
-    "grade":"A",
-    "score":30,
-    "setup":"insider_buy",
-    "as_of":"2026-11-13",
-    "entry":149.78,
-    "stop":140.71,
-    "target":164.29,
-    "hold_days":40,
-    "exit_by":"2027-01-08",
-    "rsi":51.9,
-    "reasons":[
-      "Insider bought $59,348 (Sprang Todd A.)",
       "Uptrend: price above rising 50\/200-day averages"
     ]
   }

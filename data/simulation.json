@@ -2,79 +2,91 @@
   {
     "variant": "top ideas",
     "start": "2024-10-01",
-    "end": "2026-10-30",
-    "total_return": 0.7236,
-    "annual_return": 0.2995,
-    "max_drawdown": -0.2077,
-    "benchmark_return": 0.3597,
-    "benchmark_annual": 0.1594,
+    "end": "2026-11-13",
+    "total_return": 0.0069,
+    "annual_return": 0.0032,
+    "max_drawdown": -0.2264,
+    "benchmark_return": 0.3573,
+    "benchmark_annual": 0.1553,
     "benchmark_max_drawdown": -0.1876,
     "overall": {
-      "trades": 204,
-      "win_rate": 0.436,
-      "avg_return": 0.0284,
-      "avg_days": 25.1
+      "trades": 617,
+      "win_rate": 0.502,
+      "avg_return": 0.0011,
+      "avg_days": 8.5
     },
     "by_setup": {
       "breakout": {
-        "trades": 9,
-        "win_rate": 0.222,
-        "avg_return": -0.0295,
-        "avg_days": 16.3
+        "trades": 12,
+        "win_rate": 0.333,
+        "avg_return": -0.0138,
+        "avg_days": 11.9
+      },
+      "congress_buy": {
+        "trades": 1,
+        "win_rate": 0.0,
+        "avg_return": -0.0904,
+        "avg_days": 6.0
       },
       "insider_buy": {
-        "trades": 53,
-        "win_rate": 0.415,
-        "avg_return": -0.0107,
-        "avg_days": 19.0
+        "trades": 133,
+        "win_rate": 0.421,
+        "avg_return": -0.0006,
+        "avg_days": 21.0
       },
       "insider_cluster": {
-        "trades": 142,
-        "win_rate": 0.458,
-        "avg_return": 0.0467,
-        "avg_days": 27.9
+        "trades": 471,
+        "win_rate": 0.531,
+        "avg_return": 0.0022,
+        "avg_days": 4.9
       }
     },
     "exits": {
-      "stop": 109,
-      "target": 75,
-      "time": 20
+      "time": 458,
+      "stop": 113,
+      "target": 46
     }
   },
   {
     "variant": "grade A only",
     "start": "2024-10-01",
-    "end": "2026-10-30",
-    "total_return": 0.3201,
-    "annual_return": 0.143,
-    "max_drawdown": -0.181,
-    "benchmark_return": 0.3597,
-    "benchmark_annual": 0.1594,
+    "end": "2026-11-13",
+    "total_return": 0.0507,
+    "annual_return": 0.0236,
+    "max_drawdown": -0.2443,
+    "benchmark_return": 0.3573,
+    "benchmark_annual": 0.1553,
     "benchmark_max_drawdown": -0.1876,
     "overall": {
-      "trades": 194,
-      "win_rate": 0.418,
-      "avg_return": 0.0153,
-      "avg_days": 25.7
+      "trades": 608,
+      "win_rate": 0.49,
+      "avg_return": 0.0016,
+      "avg_days": 8.4
     },
     "by_setup": {
+      "congress_buy": {
+        "trades": 1,
+        "win_rate": 0.0,
+        "avg_return": -0.0904,
+        "avg_days": 6.0
+      },
       "insider_buy": {
-        "trades": 60,
-        "win_rate": 0.417,
-        "avg_return": 0.0012,
+        "trades": 135,
+        "win_rate": 0.43,
+        "avg_return": 0.007,
         "avg_days": 20.6
       },
       "insider_cluster": {
-        "trades": 134,
-        "win_rate": 0.418,
-        "avg_return": 0.0216,
-        "avg_days": 28.0
+        "trades": 472,
+        "win_rate": 0.508,
+        "avg_return": 0.0003,
+        "avg_days": 4.9
       }
     },
     "exits": {
-      "stop": 105,
-      "target": 67,
-      "time": 22
+      "time": 454,
+      "stop": 107,
+      "target": 47
     }
   }
 ]
